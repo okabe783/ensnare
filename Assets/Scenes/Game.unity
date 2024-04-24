@@ -152,9 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751a7159dc8f0324db1fab4b04afbbd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _leaderGameObject: {fileID: 1973713171}
   _objectToPlace: {fileID: 735790062247670738, guid: d03e636e658c0c74f932f67811449a47, type: 3}
+  _characterToPlace:
+  - {fileID: 1973713171}
+  _columCount: 2
   _rowCount: 3
-  _columCount: 4
   _horizontalSpacing: 2
   _verticalSpacing: 2
   _startPoint: {x: 0, y: 0, z: 0}
@@ -2411,6 +2414,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1973713171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100096, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 3}
+  m_PrefabInstance: {fileID: 2128125728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2128125728
 PrefabInstance:
   m_ObjectHideFlags: 0
