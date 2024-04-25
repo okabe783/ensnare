@@ -29,11 +29,12 @@ public class UIManager : MonoBehaviour
       {
          for (var j = 0; j < _columCount; j++)
          {
+            var objectPosition = currentPosition;
             //objectを配置
-            Instantiate(_objectToPlace, currentPosition, Quaternion.identity);
+            var battleFieldTransform = Instantiate(_objectToPlace, objectPosition, Quaternion.identity);
             
             //characterを配置
-            var characterPosition = currentPosition + Vector3.up * _objectOffsetY;
+            var characterPosition = battleFieldTransform.transform.position + Vector3.up * _objectOffsetY;
             var character = Instantiate(_characterToPlace[characterIndex], characterPosition, Quaternion.identity);
             character.transform.forward = leaderDirection;
             
