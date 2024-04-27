@@ -1,6 +1,11 @@
 using UnityEngine;
 
-public class CardDataBase : MonoBehaviour
+[CreateAssetMenu(menuName = "Scriptable /Create Card")]
+public class CardDataBase : ScriptableObject
 {
-    
+    [SerializeField] private string _name;
+    [SerializeField] private int _cardId;
+    [SerializeField] private string _cardType;
+    [SerializeField] private Sprite _iconImage;
+    [TextArea] private string _description;
 }
