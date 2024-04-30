@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public GameObject _mainPhase;
 
     [SerializeField] private CardGenerator _cardGenerator;
+    [SerializeField] private HandPosition _handPosition;
 
     private void Awake()
     {
@@ -14,6 +15,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _cardGenerator.CardSpawn(CardType.Player);
+        DrawFirstHand();
     }
+
+    private void DrawFirstHand()
+    {
+        for (var i = 0; i < 5; i++)
+        {
+            var card = _cardGenerator.CardSpawn(CardType.Player); //Cardを配る
+            _handPosition.Add(card); //playerの手札に追加
+        }
+        _handPosition.ResetPosition();
+    } 
 }

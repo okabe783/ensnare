@@ -312,6 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainPhase: {fileID: 3997496137998053306, guid: 91219273a8bb823408618e32195702bc, type: 3}
   _cardGenerator: {fileID: 955075199}
+  _handPosition: {fileID: 785510085}
 --- !u!4 &324051776
 Transform:
   m_ObjectHideFlags: 0
@@ -322,6 +323,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.2088215, y: 2.953435, z: -0.7184345}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &614999986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 614999987}
+  m_Layer: 0
+  m_Name: ---Generator---
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &614999987
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614999986}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.608719, y: 1.763513, z: 0.9593998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -537,10 +569,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 785510080}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93130103a6b69584fb36f4ff24d3a0bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 31354eae9751f07448a3eb92ef5ed00b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardList: []
 --- !u!1 &847035020
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +635,7 @@ MonoBehaviour:
   _playerCardDataBases:
   - {fileID: 11400000, guid: 8ef3fcda76826cd44b6ebfeebc558d1d, type: 2}
   _enemyCardDataBases: []
-  _card: {fileID: 0}
+  _card: {fileID: 4649142559060480155, guid: cdd7fe33609198042a5397bc60163b30, type: 3}
 --- !u!4 &955075200
 Transform:
   m_ObjectHideFlags: 0
@@ -2651,6 +2682,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 963194228}
+  - {fileID: 253594916}
   - {fileID: 705507995}
   - {fileID: 1853093702}
   - {fileID: 847035021}
@@ -2660,9 +2692,9 @@ SceneRoots:
   - {fileID: 8305654472443258506}
   - {fileID: 187504455}
   - {fileID: 785510084}
+  - {fileID: 1108195699}
   - {fileID: 976577844}
   - {fileID: 324051776}
   - {fileID: 33909414}
-  - {fileID: 253594916}
-  - {fileID: 1108195699}
+  - {fileID: 614999987}
   - {fileID: 955075200}
