@@ -21,8 +21,9 @@ public class HandPosition : MonoBehaviour
     {
         for (var i = 0; i < cardList.Count; i++)
         {
-            var posX = i * 2f; //整列
-            cardList[i].transform.localPosition = new Vector3(posX, 0);
+            var posZ = i * 2f; 
+            //手札の場所を指定
+            cardList[i].transform.localPosition = new Vector3(0, 0,posZ);
         }
     }
 }

@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     private void DrawFirstHand()
     {
-        for (var i = 0; i < 5; i++)
+        for (var i = 0; i < 6; i++)
         {
             var card = _cardGenerator.CardSpawn(CardType.Player); //Cardを配る
             _handPosition.Add(card); //playerの手札に追加

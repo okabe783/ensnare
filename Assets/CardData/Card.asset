@@ -15,4 +15,4 @@ MonoBehaviour:
   _name: 
   _cardId: 0
   _cardType: 
-  _iconImage: {fileID: 0}
+  iconImage: {fileID: 21300000, guid: f1cc12383c5ae4cc09ddc8be4072d803, type: 3}

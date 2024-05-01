@@ -29,9 +29,8 @@ public class UIManager : MonoBehaviour
       {
          for (var j = 0; j < _columCount; j++)
          {
-            var objectPosition = currentPosition;
             //objectを配置
-            var battleFieldTransform = Instantiate(_objectToPlace, objectPosition, Quaternion.identity);
+            var battleFieldTransform = Instantiate(_objectToPlace, currentPosition, Quaternion.identity).transform;
             
             //characterを配置
             var characterPosition = battleFieldTransform.transform.position + Vector3.up * _objectOffsetY;
