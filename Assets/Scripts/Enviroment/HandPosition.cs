@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 手札となる場所にアタッチする
+/// </summary>
 public class HandPosition : MonoBehaviour
 {
     private List<Card> cardList = new List<Card>();
@@ -12,11 +15,7 @@ public class HandPosition : MonoBehaviour
         card.transform.SetParent(this.transform);
     }
 
-    public void Remove(Card card)
-    {
-        cardList.Remove(card);
-    }
-
+    /// <summary>手札の場所を調整</summary>
     public void ResetPosition()
     {
         for (var i = 0; i < cardList.Count; i++)
