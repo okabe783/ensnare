@@ -156,11 +156,11 @@ MonoBehaviour:
   _objectToPlace: {fileID: 735790062247670738, guid: d03e636e658c0c74f932f67811449a47, type: 3}
   _characterToPlace:
   - {fileID: 4717223549713448282, guid: df9febe98f6a1c241b3e15e5b9ec7f09, type: 3}
-  - {fileID: 4717223549713448282, guid: df9febe98f6a1c241b3e15e5b9ec7f09, type: 3}
-  - {fileID: 4717223549713448282, guid: df9febe98f6a1c241b3e15e5b9ec7f09, type: 3}
-  - {fileID: 4717223549713448282, guid: df9febe98f6a1c241b3e15e5b9ec7f09, type: 3}
-  - {fileID: 4717223549713448282, guid: df9febe98f6a1c241b3e15e5b9ec7f09, type: 3}
-  - {fileID: 4717223549713448282, guid: df9febe98f6a1c241b3e15e5b9ec7f09, type: 3}
+  - {fileID: 164916, guid: ed5a181593a2a401aa30a8480e084370, type: 3}
+  - {fileID: 1000011978067804, guid: 5981fa5cfcb575e4c9ceee7d6339ecdd, type: 3}
+  - {fileID: 199370, guid: 0dcb83ced853d495c9c4eec4f5203272, type: 3}
+  - {fileID: 1000010545793072, guid: 08c696a94f05ed04cb84e62e9c1ea304, type: 3}
+  - {fileID: 1000014099315342, guid: cd06875f070f5524cbac813567f9c3f9, type: 3}
   _columCount: 2
   _rowCount: 3
   _horizontalSpacing: 2
