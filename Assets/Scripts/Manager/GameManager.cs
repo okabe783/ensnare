@@ -6,10 +6,9 @@ public class GameManager : MonoBehaviour
     public GameObject _mainPhase;
 
     [SerializeField] private CardGenerator _cardGenerator;
-    [SerializeField] private HandPosition _handPosition;
+    [SerializeField] private HandPosition _hand;
     [SerializeField] private SelectedCard _selectedCard;
-    
-    public bool _isSelected { get; private set; }
+    [SerializeField] private Player _player;
 
     private void Awake()
     {
@@ -18,36 +17,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        DrawFirstHand();
+        DrawFirstHand(_player);
     }
 
-    private void DrawFirstHand()
+    private void DrawFirstHand(Player player)
     {
         for (var i = 0; i < 6; i++)
         {
             var card = _cardGenerator.CardSpawn(CardType.Player); //Cardを配る
-            SetCardToHand(card);
+            player.SetCardToHand(card);
         }
-        _handPosition.ResetPosition();
-    }
-
-    private void SetCardToHand(Card card)
-    {
-        _handPosition.Add(card); //playerの手札に追加
-        card.OnClickCard = SelectCard;
-    }
-
-    private void SelectCard(Card card)
-    {
-        if (_isSelected)
-        {
-            return;
-        }
-
-        if (_selectedCard._selectCard)
-        {
-            _handPosition.Add(_selectedCard._selectCard);
-        }
-        _selectedCard.Set(card);
+        player.Hand.ResetPosition();
     }
 }
