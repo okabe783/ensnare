@@ -13,4 +13,5 @@ public class SelectedCard : MonoBehaviour
         card.transform.SetParent(transform);
         card.transform.position = transform.position;
     }
+    
 }
