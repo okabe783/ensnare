@@ -11,14 +11,16 @@ public class Card : MonoBehaviour
 
     //CardUI
     [SerializeField] private Image _icon;
-    [SerializeField] private Text _description;
+    [SerializeField] private Text _powerText;
+    [SerializeField] private int _power;
 
     //ScriptableObjectで設定したCardを読み込む
     public void CardSet(CardDataBase cardDataBase)
     {
         _cardDataBase = cardDataBase;
-        _icon = _cardDataBase.Icon;
-        _description = _cardDataBase.Description;
+        _icon.sprite = cardDataBase.Icon;
+        _powerText.text = cardDataBase.PowerText;
+        _power = cardDataBase.Power;
     }
 
     /// <summary>CardがClickされたことを通知する</summary>

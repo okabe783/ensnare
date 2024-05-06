@@ -1,5 +1,4 @@
 using UnityEngine;
-using static CardGenerator;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,7 +23,7 @@ public class GameManager : MonoBehaviour
     {
         for (var i = 0; i < 6; i++)
         {
-            var card = _cardGenerator.CardSpawn(CardType.Player); //Cardを配る
+            var card = _cardGenerator.CardSpawn(i); //Cardを配る
             player.SetCardToHand(card);
         }
         player.Hand.ResetPosition();

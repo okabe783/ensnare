@@ -635,14 +635,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerCardDataBases:
-  - {fileID: 11400000, guid: 29b70cf781b61a94fa96df6867478fc2, type: 2}
-  - {fileID: 11400000, guid: 29b70cf781b61a94fa96df6867478fc2, type: 2}
-  - {fileID: 11400000, guid: 29b70cf781b61a94fa96df6867478fc2, type: 2}
-  - {fileID: 11400000, guid: 29b70cf781b61a94fa96df6867478fc2, type: 2}
-  - {fileID: 11400000, guid: 29b70cf781b61a94fa96df6867478fc2, type: 2}
-  - {fileID: 11400000, guid: 29b70cf781b61a94fa96df6867478fc2, type: 2}
+  - {fileID: 11400000, guid: 82d6f53e64add5241b5ddc7adfed1b8f, type: 2}
+  - {fileID: 11400000, guid: 80eec23e91668234e981592afebe470a, type: 2}
+  - {fileID: 11400000, guid: 6c8ef74853fb6a348a852275d9ab1365, type: 2}
+  - {fileID: 11400000, guid: 8d70955fcc338f34c8c74b5f1462ea0e, type: 2}
+  - {fileID: 11400000, guid: f054d7544d08f024e9d2831c0a2f57b2, type: 2}
+  - {fileID: 11400000, guid: 3851cc62659dc9a4ba17351142108b6b, type: 2}
   _enemyCardDataBases: []
-  _card: {fileID: 4336786534588539073, guid: 3c6e70626a165bd44bb49296aa44cf46, type: 3}
+  _card: {fileID: 4336786534588539073, guid: 7ba25634ae0202a49b59c5f57986110d, type: 3}
 --- !u!4 &955075200
 Transform:
   m_ObjectHideFlags: 0
