@@ -14,6 +14,8 @@ public class Card : MonoBehaviour
     [SerializeField] private Text _powerText;
     [SerializeField] private int _power;
 
+    public int Power => _power;
+
     //ScriptableObjectで設定したCardを読み込む
     public void CardSet(CardDataBase cardDataBase)
     {
