@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: 
   _cardId: 0
-  _cardType: 
+  _power: 0
+  _cardType: 1
   iconImage: {fileID: 21300000, guid: 74cc81fdeab2d4f38b87dc8d873f33c0, type: 3}
+  _powerText: 

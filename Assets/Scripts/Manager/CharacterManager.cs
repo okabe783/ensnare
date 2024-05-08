@@ -1,11 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>FieldにUIを配置</summary>
-public class UIManager : MonoBehaviour
+public class CharacterManager : MonoBehaviour
 {
    public GameObject _leaderGameObject;
    public GameObject _objectToPlace;
    public GameObject[] _characterToPlace;
+   public List<ClickSelectCharacter> characterList = new List<ClickSelectCharacter>();
    public int _columCount = 2;　//行
    public int _rowCount = 3; //列
    public float _horizontalSpacing = 2;　//横の間隔
@@ -35,6 +37,7 @@ public class UIManager : MonoBehaviour
             //characterを配置
             var characterPosition = battleFieldTransform.transform.position + Vector3.up * _objectOffsetY;
             var character = Instantiate(_characterToPlace[characterIndex], characterPosition, Quaternion.identity);
+            characterList.Add(character.GetComponent<ClickSelectCharacter>());
             character.transform.forward = leaderDirection;
             
             currentPosition.x += _horizontalSpacing;
@@ -45,4 +48,11 @@ public class UIManager : MonoBehaviour
          currentPosition.z += _verticalSpacing;
       }
    }
+   
+   public int GetPower(int number)
+   {
+      return characterList[number]._powerValue;
+   }
+
+   
 }

@@ -161,6 +161,7 @@ MonoBehaviour:
   - {fileID: 199370, guid: 0dcb83ced853d495c9c4eec4f5203272, type: 3}
   - {fileID: 1000010545793072, guid: 08c696a94f05ed04cb84e62e9c1ea304, type: 3}
   - {fileID: 1000014099315342, guid: cd06875f070f5524cbac813567f9c3f9, type: 3}
+  characterList: []
   _columCount: 2
   _rowCount: 3
   _horizontalSpacing: 2
@@ -310,10 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719000bc6b10d7c419f3c26527c0589f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainPhase: {fileID: 3997496137998053306, guid: 91219273a8bb823408618e32195702bc, type: 3}
   _cardGenerator: {fileID: 955075199}
-  _hand: {fileID: 785510085}
-  _selectedCard: {fileID: 1835057885}
   _player: {fileID: 2128156707}
 --- !u!4 &324051776
 Transform:
@@ -641,7 +639,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8d70955fcc338f34c8c74b5f1462ea0e, type: 2}
   - {fileID: 11400000, guid: f054d7544d08f024e9d2831c0a2f57b2, type: 2}
   - {fileID: 11400000, guid: 3851cc62659dc9a4ba17351142108b6b, type: 2}
-  _enemyCardDataBases: []
   _card: {fileID: 4336786534588539073, guid: 7ba25634ae0202a49b59c5f57986110d, type: 3}
 --- !u!4 &955075200
 Transform:
@@ -2342,17 +2339,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &1835057885 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7739702588462122262, guid: df9febe98f6a1c241b3e15e5b9ec7f09, type: 3}
-  m_PrefabInstance: {fileID: 8305654472443258506}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e89aa2857763fb4994d80f25b2a0eae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1853093701
 GameObject:
   m_ObjectHideFlags: 0
