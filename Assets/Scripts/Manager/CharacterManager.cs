@@ -14,16 +14,11 @@ public class CharacterManager : MonoBehaviour
     public float _verticalSpacing = 2;　//縦の間隔
     public Vector3 _startPoint = Vector3.zero;　//配置の始点
     public float _objectOffsetY = 1.0f;
-
-    private ClickSelectCharacter[] _selectCharacter = new ClickSelectCharacter[2];
-
-    private void Start()
-    {
-        CreatePlayerObject();
-    }
+    
+    private ClickSelectCharacter[] _selectCharacter = new ClickSelectCharacter[2];　//選択されたCharacterを格納
 
     /// <summary>CharacterとFieldを配置</summary>
-    private void CreatePlayerObject()
+    public void CreatePlayerObject()
     {
         var leaderDirection = _leaderGameObject.transform.forward;
         var currentPosition = _startPoint;

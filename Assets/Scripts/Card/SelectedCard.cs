@@ -14,6 +14,7 @@ public class SelectedCard : MonoBehaviour
         card.transform.position = transform.position;
     }
 
+    //Cardの削除
     public void Remove()
     {
         if (_selectCard != null)

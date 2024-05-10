@@ -27,12 +27,11 @@ public class Player : MonoBehaviour
         if (_selectedCard._selectCard)
         {
             _hand.Add(_selectedCard._selectCard);
-            Debug.Log("Cardを手札に戻した");
         }
         _hand.Remove(card);
         _selectedCard.Set(card);
         _hand.ResetPosition();
         
-        Debug.Log("cardをセットした");
+        //もし手札のCardがなくなった時BattlePhaseに移行する
     }
 }
