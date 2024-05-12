@@ -24,14 +24,12 @@ public class Player : MonoBehaviour
         }
 
         //すでにセットされていれば手札に戻す
-        if (_selectedCard._selectCard)
+        if (_selectedCard._isSelectCard)
         {
-            _hand.Add(_selectedCard._selectCard);
+            _hand.Add(_selectedCard._isSelectCard);
         }
         _hand.Remove(card);
         _selectedCard.Set(card);
         _hand.ResetPosition();
-        
-        //もし手札のCardがなくなった時BattlePhaseに移行する
     }
 }

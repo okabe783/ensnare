@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class ClickSelectCharacter : MonoBehaviour, IPointerClickHandler
 {
     private SelectedCard _checkCard;
-    public int _powerValue;　//攻撃力
+    public int _powerValue { get; set; }
 
     public void Update()
     {
@@ -16,10 +16,10 @@ public class ClickSelectCharacter : MonoBehaviour, IPointerClickHandler
     /// <summary>CharacterがClickされたときの処理</summary>
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (_checkCard._selectCard != null)
+        if (_checkCard._isSelectCard != null && GameManager.Instance._turn == GameManager.Turn.MainPhase)
         {
-            _powerValue += _checkCard._selectCard.Power;　//CharacterにCardの攻撃力を加算
-            _checkCard.Remove();　//使用したCardを削除
+            _powerValue += _checkCard._isSelectCard.Power;　//CharacterにCardの攻撃力を加算
+            _checkCard.DestroyCard();　//使用したCardを削除
         }
     }
 }

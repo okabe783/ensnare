@@ -414,6 +414,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardGenerator: {fileID: 955075199}
   _characterManager: {fileID: 33909413}
+  _selectedCard: {fileID: 1542916853}
+  _hand: {fileID: 785510085}
   _player: {fileID: 2128156707}
   _uiManager: {fileID: 1957570992}
 --- !u!4 &324051776
@@ -1619,6 +1621,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1542916853 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7739702588462122262, guid: df9febe98f6a1c241b3e15e5b9ec7f09, type: 3}
+  m_PrefabInstance: {fileID: 8305654472443258506}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e89aa2857763fb4994d80f25b2a0eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1615556208
 GameObject:
   m_ObjectHideFlags: 0

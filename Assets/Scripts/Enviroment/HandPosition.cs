@@ -29,4 +29,10 @@ public class HandPosition : MonoBehaviour
             cardList[i].transform.localPosition = new Vector3(0, 0,posZ);
         }
     }
+
+    //手札が空かどうかの判定
+    public bool IsEmpty()
+    {
+        return cardList.Count == 0;
+    }
 }

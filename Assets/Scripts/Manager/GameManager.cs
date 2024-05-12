@@ -2,42 +2,50 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _instance;
-    public static GameManager Instance => _instance;
+    public static GameManager Instance { get; private set; }
 
     [SerializeField] private CardGenerator _cardGenerator;
     [SerializeField] private CharacterManager _characterManager;
+    [SerializeField] private SelectedCard _selectedCard;
+    [SerializeField] private HandPosition _hand;
     [SerializeField] private Player _player;
     [SerializeField] private UIManager _uiManager;
-    public Turn turn;
+
+    private bool _isPanelActive;
+    public Turn _turn { get; set; }
 
     private void Start()
     {
         //シングルトン化
-        if (_instance != null && _instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        _instance = this;
+        Instance = this;
         SetUp();
+    }
+
+    private void Update()
+    {
+        if (_turn == Turn.RefreshPhase)
+        {
+            RefreshPhase();
+        }
+        else if (_turn == Turn.BattlePhase && _isPanelActive)
+        {
+            BattlePhase();
+        }
+        else if (_turn == Turn.EndPhase)
+        {
+            EndPhase();
+        }
     }
 
     private void FixedUpdate()
     {
-        if (turn == Turn.RefreshPhase)
-        {
-            RefreshPhase();
-        }
-        else if (turn == Turn.BattlePhase)
-        {
-            BattlePhase();
-        }
-        else if (turn == Turn.EndPhase)
-        {
-            EndPhase();
-        }
+        IsUseCard();
     }
 
     private void SetUp()
@@ -45,7 +53,7 @@ public class GameManager : MonoBehaviour
         _characterManager.CreatePlayerObject(); 
         DrawCard(_player);
         MainPhase();
-        turn = Turn.MainPhase;
+        _turn = Turn.MainPhase;
     }
 
     /// <summary>GameがStartしたときhandを配る</summary>
@@ -82,12 +90,23 @@ public class GameManager : MonoBehaviour
     private void BattlePhase()
     {
         _uiManager.SetBattlePanel();
+        _isPanelActive = false;
     }
 
     /// <summary>Turnを終了したときに呼び出される</summary>
     private void EndPhase()
     {
         _uiManager.SetTurnEndPanel();
+    }
+
+    private void IsUseCard()
+    {
+        if (_hand.IsEmpty() && _selectedCard._isSelectCard == null && _turn == Turn.MainPhase)
+        {
+            _turn = Turn.BattlePhase;
+            _isPanelActive = true;
+            Debug.Log("BattlePhase");
+        }
     }
 
     public enum Turn
