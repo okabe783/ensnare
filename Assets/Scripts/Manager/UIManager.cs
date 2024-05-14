@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour
     {
         _text.text = "BattlePhase";
         _turnPanel.SetActive(true);
+        _button.SetActive(true);
         StartCoroutine(SetTurnPanel());
     }
 
@@ -41,12 +42,14 @@ public class UIManager : MonoBehaviour
         StartCoroutine(SetTurnPanel());
     }
 
+    //Panelをsetする
     private IEnumerator SetTurnPanel()
     {
         yield return new WaitForSeconds(1f);
         _turnPanel.SetActive(false);
     }
 
+    //EndPhaseに移行するためのButton
     public void OnclickEndPhase()
     {
         GameManager.Instance._turn = GameManager.Turn.EndPhase;

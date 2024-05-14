@@ -1,5 +1,6 @@
 using UnityEngine;
 
+/// <summary>ReaderCharacterと手札に関するクラス</summary>
 public class Player : MonoBehaviour
 {
     [SerializeField] private HandPosition _hand;

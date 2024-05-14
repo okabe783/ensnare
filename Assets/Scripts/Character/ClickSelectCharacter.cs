@@ -21,5 +21,8 @@ public class ClickSelectCharacter : MonoBehaviour, IPointerClickHandler
             _powerValue += _checkCard._isSelectCard.Power;　//CharacterにCardの攻撃力を加算
             _checkCard.DestroyCard();　//使用したCardを削除
         }
+
+        if (GameManager.Instance._turn == GameManager.Turn.BattlePhase)
+            CharacterManager.Instance.SelectCharacter(this);
     }
 }
