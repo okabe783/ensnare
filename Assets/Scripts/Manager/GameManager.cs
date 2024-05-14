@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private UIManager _uiManager;
 
-    private bool _isPanelActive;
+    public bool _isPanelActive { get; set; }
+    
     public Turn _turn { get; set; }
 
     private void Start()
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
         {
             RefreshPhase();
         }
+        //battlePhaseでパネルがアクティブになっていなければ
         else if (_turn == Turn.BattlePhase && _isPanelActive)
         {
             BattlePhase();
@@ -91,12 +93,15 @@ public class GameManager : MonoBehaviour
     {
         _uiManager.SetBattlePanel();
         _isPanelActive = false;
+        _uiManager._button.SetActive(true);
     }
 
     /// <summary>Turnを終了したときに呼び出される</summary>
     private void EndPhase()
     {
         _uiManager.SetTurnEndPanel();
+        _isPanelActive = true;
+        _uiManager._button.SetActive(false);
     }
 
     private void IsUseCard()
