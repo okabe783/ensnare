@@ -514,6 +514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardGenerator: {fileID: 955075199}
   _characterManager: {fileID: 33909413}
+  _handPosition: {fileID: 785510085}
   _selectedCard: {fileID: 1542916853}
   _hand: {fileID: 785510085}
   _player: {fileID: 2128156707}

@@ -35,4 +35,13 @@ public class HandPosition : MonoBehaviour
     {
         return cardList.Count == 0;
     }
+
+    public void ResetCard()
+    {
+        foreach (var card in cardList)
+        {
+            Destroy(card.gameObject);
+        }
+        cardList.Clear();
+    }
 }
