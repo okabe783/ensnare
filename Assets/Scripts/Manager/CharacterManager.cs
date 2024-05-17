@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -84,6 +85,8 @@ public class CharacterManager : MonoBehaviour
         {
             _selectCharacter[1] = character;
             InitiateBattle();　//characterが2体セットされたらBattleを開始する
+            _selectCharacter[0] = null;
+            _selectCharacter[1] = null;
         }
     }
 }

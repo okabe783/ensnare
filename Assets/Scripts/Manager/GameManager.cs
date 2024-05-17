@@ -82,6 +82,8 @@ public class GameManager : MonoBehaviour
         {
             character._powerValue = 0;
         }
+        _isPanelActive = false;
+        _turn = Turn.MainPhase;
     }
 
     /// <summary>CardをセットするTurn</summary>
