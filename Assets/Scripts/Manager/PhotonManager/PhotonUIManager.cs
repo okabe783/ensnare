@@ -18,7 +18,8 @@ public class PhotonUIManager : MonoBehaviourPunCallbacks
     private Vector3 _forwardDirection;
     private Vector3 _rightDirection;
 
-    private GameObject[] _readerField = new GameObject[1];
+    //Characterに関する変数
+    [SerializeField] private GameObject[] _characterToPlace;
 
     private void Start()
     {
@@ -28,13 +29,14 @@ public class PhotonUIManager : MonoBehaviourPunCallbacks
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
     }
 
     //Characterを置くためのFieldを生成
-    public void SetUpGameField()
+    public void PhotonSetUpGameField()
     {
+        var characterIndex = 0; //CharacterModelのindex番号
+        
         //マスタークライアントのみがFieldを生成する
         if (PhotonNetwork.IsMasterClient)
         {
@@ -46,27 +48,37 @@ public class PhotonUIManager : MonoBehaviourPunCallbacks
                     // 各オブジェクトの位置を計算
                     var offset = _forwardDirection * (row * rowSpacing + frontOffset) + _rightDirection * (col - 1) * columnSpacing;
                     var objectPosition = _firstPlayerFieldPosition + offset;
+                    
                     // オブジェクトをインスタンス化
-                    PhotonNetwork.Instantiate(row > 2 ? "PlayerField" : "EnemyField", objectPosition,
+                    var field = PhotonNetwork.Instantiate(row > 2 ? "PlayerField" : "EnemyField", objectPosition,
                         Quaternion.identity);
+
+                    var avatarPosition = objectPosition;
+                    avatarPosition.y += 0.5f;
+                    PhotonNetwork.Instantiate("Avatar", avatarPosition, Quaternion.identity);
                 }
             }
         }
     }
 
     //Readerを生成
-    public void SetUpReader()
+    public void PhotonSetUpReader()
     {
         var firstPlayerPosition = new Vector3(0f, 0f,0f); //初期位置の指定
         var secondPlayerPosition = new Vector3(0, 0, 10); //Player2の初期位置を指定
-        
-        //playerFieldをインスタンス化してその位置を取得する
-        var firstPlayer = PhotonNetwork.Instantiate("PlayerField", firstPlayerPosition, Quaternion.identity);
-        var secondPlayer = PhotonNetwork.Instantiate("EnemyField", secondPlayerPosition, Quaternion.identity);
-        
-        //FieldのPositionを取得
-        _firstPlayerFieldPosition = firstPlayer.transform.position;
-        _secondPlayerFieldPosition = secondPlayer.transform.position;
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            //playerFieldをインスタンス化してその位置を取得する
+            var firstPlayer = PhotonNetwork.Instantiate("PlayerField", firstPlayerPosition, Quaternion.identity);
+            //FieldのPositionを取得
+            _firstPlayerFieldPosition = firstPlayer.transform.position;
+        }
+        else
+        {
+            var secondPlayer = PhotonNetwork.Instantiate("EnemyField", secondPlayerPosition, Quaternion.identity);
+            _secondPlayerFieldPosition = secondPlayer.transform.position;
+        }
         
         //Avatarの位置をFieldの上に設定してインスタンス化
         var avatarPosition = _firstPlayerFieldPosition;

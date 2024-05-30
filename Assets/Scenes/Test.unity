@@ -199,6 +199,13 @@ MonoBehaviour:
   rowSpacing: 2
   columnSpacing: 2
   frontOffset: 2
+  _characterToPlace:
+  - {fileID: 171282, guid: c59421ce036944bf6b2c92f4f51caac0, type: 3}
+  - {fileID: 1000012959527128, guid: 2b7bc8324db9b824b96e79a78594374f, type: 3}
+  - {fileID: 155608, guid: 1b84a544679e04df38a7127504bc7125, type: 3}
+  - {fileID: 1000014099315342, guid: cd06875f070f5524cbac813567f9c3f9, type: 3}
+  - {fileID: 1000010468575382, guid: ff565635a076b51498cd94415c1921b3, type: 3}
+  - {fileID: 175802, guid: dbc8a7270f3c94174840af1937812510, type: 3}
 --- !u!4 &361175008
 Transform:
   m_ObjectHideFlags: 0
