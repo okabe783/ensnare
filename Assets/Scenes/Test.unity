@@ -196,16 +196,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92841070f9469864da3bb61bb5d88300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rowSpacing: 2
-  columnSpacing: 2
-  frontOffset: 2
-  _characterToPlace:
-  - {fileID: 171282, guid: c59421ce036944bf6b2c92f4f51caac0, type: 3}
-  - {fileID: 1000012959527128, guid: 2b7bc8324db9b824b96e79a78594374f, type: 3}
-  - {fileID: 155608, guid: 1b84a544679e04df38a7127504bc7125, type: 3}
-  - {fileID: 1000014099315342, guid: cd06875f070f5524cbac813567f9c3f9, type: 3}
-  - {fileID: 1000010468575382, guid: ff565635a076b51498cd94415c1921b3, type: 3}
-  - {fileID: 175802, guid: dbc8a7270f3c94174840af1937812510, type: 3}
+  _rowSpacing: 2
+  _columnSpacing: 2
+  _frontOffset: 2
+  _masterCharacter:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  _guestCharacter:
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
 --- !u!4 &361175008
 Transform:
   m_ObjectHideFlags: 0

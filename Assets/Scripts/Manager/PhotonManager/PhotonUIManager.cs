@@ -4,22 +4,29 @@ using UnityEngine;
 public class PhotonUIManager : MonoBehaviourPunCallbacks
 {
     public static PhotonUIManager Instance { get; private set; }
-    
+
     // 各オブジェクトの間隔
-    [SerializeField,Header("行")] private float rowSpacing = 2.0f;
-    [SerializeField,Header("列")] private float columnSpacing = 2.0f;
-    [SerializeField,Header("Playerからの距離")] private float frontOffset = 2.0f; // Playerの前に配置するためのオフセット
-    
+    [SerializeField, Header("行")] private float _rowSpacing = 2.0f;
+    [SerializeField, Header("列")] private float _columnSpacing = 2.0f;
+
+    [SerializeField, Header("Playerからの距離")]
+    private float _frontOffset = 2.0f; // Playerの前に配置するためのオフセット
+
     //FieldのPosition
     private Vector3 _firstPlayerFieldPosition = new();
     private Vector3 _secondPlayerFieldPosition = new();
-    
-    // Playerの向き
-    private Vector3 _forwardDirection;
-    private Vector3 _rightDirection;
+
+    // Masterの向き
+    private Vector3 _masterForwardDirection; //前向きの方向
+    private Vector3 _masterRightDirection;　//右向きの方向
+
+    //Guestの向き
+    private Vector3 _guestForwardDirection; //前向きの方向
+    private Vector3 _guestRightDirection;　//右向きの方向
 
     //Characterに関する変数
-    [SerializeField] private GameObject[] _characterToPlace;
+    [SerializeField] private string[] _masterCharacter;
+    [SerializeField] private string[] _guestCharacter;
 
     private void Start()
     {
@@ -29,14 +36,14 @@ public class PhotonUIManager : MonoBehaviourPunCallbacks
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
     }
 
-    //Characterを置くためのFieldを生成
+    //Master用Characterを置くためのFieldを生成
     public void PhotonSetUpGameField()
     {
-        var characterIndex = 0; //CharacterModelのindex番号
-        
+        var characterIndex = 0;
         //マスタークライアントのみがFieldを生成する
         if (PhotonNetwork.IsMasterClient)
         {
@@ -46,16 +53,41 @@ public class PhotonUIManager : MonoBehaviourPunCallbacks
                 for (var col = 0; col < 3; col++)
                 {
                     // 各オブジェクトの位置を計算
-                    var offset = _forwardDirection * (row * rowSpacing + frontOffset) + _rightDirection * (col - 1) * columnSpacing;
+                    var offset = _masterForwardDirection * (row * _rowSpacing + _frontOffset) +
+                                 _masterRightDirection * (col - 1) * _columnSpacing;
                     var objectPosition = _firstPlayerFieldPosition + offset;
-                    
+
                     // オブジェクトをインスタンス化
-                    var field = PhotonNetwork.Instantiate(row > 2 ? "PlayerField" : "EnemyField", objectPosition,
+                    PhotonNetwork.Instantiate(row > 2 ? "PlayerField" : "EnemyField", objectPosition,
                         Quaternion.identity);
 
                     var avatarPosition = objectPosition;
                     avatarPosition.y += 0.5f;
-                    PhotonNetwork.Instantiate("Avatar", avatarPosition, Quaternion.identity);
+
+                    if (characterIndex >= _masterCharacter.Length) continue;
+                    //Characterをインスタンス化
+                    PhotonNetwork.Instantiate(_masterCharacter[characterIndex], avatarPosition, Quaternion.identity);
+                    characterIndex++;
+                }
+            }
+        }
+        else
+        {
+            for (var row = 0; row < 4; row++)
+            {
+                for (var col = 0; col < 3; col++)
+                {
+                    //前方向を-にしたらバグが治った
+                    var offset = -_guestForwardDirection * (row * _rowSpacing + _frontOffset) +
+                                 _guestRightDirection * (col - 1) * _columnSpacing;
+                    var secondPlayerObjectPosition = _secondPlayerFieldPosition + offset;
+
+                    var avatarPosition = secondPlayerObjectPosition;
+                    avatarPosition.y += 0.5f;
+                    if (characterIndex >= _guestCharacter.Length) continue;
+                    PhotonNetwork.Instantiate(_guestCharacter[characterIndex], avatarPosition,
+                        Quaternion.Euler(0, 180, 0));
+                    characterIndex++;
                 }
             }
         }
@@ -64,7 +96,7 @@ public class PhotonUIManager : MonoBehaviourPunCallbacks
     //Readerを生成
     public void PhotonSetUpReader()
     {
-        var firstPlayerPosition = new Vector3(0f, 0f,0f); //初期位置の指定
+        var firstPlayerPosition = new Vector3(0f, 0f, 0f); //初期位置の指定
         var secondPlayerPosition = new Vector3(0, 0, 10); //Player2の初期位置を指定
 
         if (PhotonNetwork.IsMasterClient)
@@ -73,25 +105,29 @@ public class PhotonUIManager : MonoBehaviourPunCallbacks
             var firstPlayer = PhotonNetwork.Instantiate("PlayerField", firstPlayerPosition, Quaternion.identity);
             //FieldのPositionを取得
             _firstPlayerFieldPosition = firstPlayer.transform.position;
+
+            //Avatarの位置をFieldの上に設定してインスタンス化
+            var avatarPosition = _firstPlayerFieldPosition;
+            avatarPosition.y += 0.5f;
+            var masterAvatar = PhotonNetwork.Instantiate("Avatar", avatarPosition, Quaternion.identity);
+
+            // Playerの向きを取得
+            _masterForwardDirection = masterAvatar.transform.forward;
+            _masterRightDirection = masterAvatar.transform.right;
         }
         else
         {
             var secondPlayer = PhotonNetwork.Instantiate("EnemyField", secondPlayerPosition, Quaternion.identity);
             _secondPlayerFieldPosition = secondPlayer.transform.position;
+
+            var guestAvatarPosition = _secondPlayerFieldPosition;
+            guestAvatarPosition.y = 0.5f;
+
+            var guestAvatar = PhotonNetwork.Instantiate("Avatar", guestAvatarPosition, Quaternion.identity);
+
+            //Guestの向きを取得
+            _guestForwardDirection = guestAvatar.transform.forward;
+            _guestRightDirection = guestAvatar.transform.right;
         }
-        
-        //Avatarの位置をFieldの上に設定してインスタンス化
-        var avatarPosition = _firstPlayerFieldPosition;
-        var enemyAvatarPosition = _secondPlayerFieldPosition;
-        
-        avatarPosition.y += 0.5f;
-        enemyAvatarPosition.y = 0.5f;
-        
-        var playerAvatar = PhotonNetwork.Instantiate("Avatar", avatarPosition, Quaternion.identity);
-        PhotonNetwork.Instantiate("Avatar", enemyAvatarPosition, Quaternion.identity);
-        
-        // Playerの向きを取得
-        _forwardDirection = playerAvatar.transform.forward;
-        _rightDirection = playerAvatar.transform.right;
     }
 }

@@ -5,20 +5,20 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     public static CharacterManager Instance { get; private set; }
-    
+
     public GameObject _leaderGameObject;
     public GameObject _objectToPlace;
-    public GameObject[] _characterToPlace;
+    [SerializeField] private GameObject[] _characterToPlace;
     public List<ClickSelectCharacter> characterList = new List<ClickSelectCharacter>();
-    [SerializeField]private int _columCount = 2;　//行
-    [SerializeField]private int _rowCount = 3; //列
-    [SerializeField]private float _horizontalSpacing = 2;　//横の間隔
-    [SerializeField]private float _verticalSpacing = 2;　//縦の間隔
-    private Vector3 _startPoint = new Vector3(1,0,1);　//配置の始点
+    [SerializeField] private int _columCount = 2;　//行
+    [SerializeField] private int _rowCount = 3; //列
+    [SerializeField] private float _horizontalSpacing = 2;　//横の間隔
+    [SerializeField] private float _verticalSpacing = 2;　//縦の間隔
+    private Vector3 _startPoint = new Vector3(1, 0, 1);　//配置の始点
     private float _objectOffsetY = 1.0f;
-    
+
     private ClickSelectCharacter[] _selectCharacter = new ClickSelectCharacter[2];　//選択されたCharacterを格納
-    
+
     private void Start()
     {
         //シングルトン化
