@@ -1,9 +1,9 @@
 using Photon.Pun;
 using UnityEngine;
 
-public class PhotonUIManager : MonoBehaviourPunCallbacks
+public class PhotonObjectManager : MonoBehaviourPunCallbacks
 {
-    public static PhotonUIManager Instance { get; private set; }
+    public static PhotonObjectManager Instance { get; private set; }
 
     // 各オブジェクトの間隔
     [SerializeField, Header("行")] private float _rowSpacing = 2.0f;
@@ -27,6 +27,7 @@ public class PhotonUIManager : MonoBehaviourPunCallbacks
     //Characterに関する変数
     [SerializeField] private string[] _masterCharacter;
     [SerializeField] private string[] _guestCharacter;
+    
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class PhotonUIManager : MonoBehaviourPunCallbacks
         }
 
         Instance = this;
+        
     }
 
     //Master用Characterを置くためのFieldを生成
@@ -123,11 +125,11 @@ public class PhotonUIManager : MonoBehaviourPunCallbacks
             var guestAvatarPosition = _secondPlayerFieldPosition;
             guestAvatarPosition.y = 0.5f;
 
-            var guestAvatar = PhotonNetwork.Instantiate("Avatar", guestAvatarPosition, Quaternion.identity);
+            var guestAvatar = PhotonNetwork.Instantiate("Avatar", guestAvatarPosition, Quaternion.Euler(0, 180, 0));
 
             //Guestの向きを取得
-            _guestForwardDirection = guestAvatar.transform.forward;
-            _guestRightDirection = guestAvatar.transform.right;
+            _guestForwardDirection = -guestAvatar.transform.forward;
+            _guestRightDirection = -guestAvatar.transform.right;
         }
     }
 }
