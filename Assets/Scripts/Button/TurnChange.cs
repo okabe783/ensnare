@@ -1,20 +1,19 @@
-public class TurnChange : IButton
-{
-    private enum Turn
-    {
-        MasterTurn,
-        GuestTurn
-    }
+using UnityEngine;
+using Ensnare.Enums; 
 
-    private Turn _currentTurn;
-    
+public class TurnChange : MonoBehaviour,IButton
+{
+    public Turn CurrentTurn { get; private set; }
+
     public void OnClickGuestTurn()
     {
-        _currentTurn = Turn.GuestTurn;
+        Debug.Log("GuestTurn");
+        CurrentTurn = Turn.GuestTurn;
     }
 
     public void OnClickMasterTurn()
     {
-        _currentTurn = Turn.MasterTurn;
+        Debug.Log("MasterTurn");
+        CurrentTurn = Turn.MasterTurn;
     }
 }
