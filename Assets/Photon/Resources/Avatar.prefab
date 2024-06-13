@@ -530,7 +530,6 @@ GameObject:
   - component: {fileID: 3135703441641283541}
   - component: {fileID: 7691904582556793070}
   - component: {fileID: 7448588953085129357}
-  - component: {fileID: 1932738498582153360}
   m_Layer: 3
   m_Name: Avatar
   m_TagString: Untagged
@@ -600,20 +599,6 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1932738498582153360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913988041346892947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073bab083476cb148be013331c25ba1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hand: {fileID: 0}
-  _selectedCard: {fileID: 0}
 --- !u!1 &960234611350363614
 GameObject:
   m_ObjectHideFlags: 0
@@ -3530,7 +3515,7 @@ GameObject:
   - component: {fileID: 5146502313834431891}
   - component: {fileID: 2914626770646896130}
   m_Layer: 3
-  m_Name: ChoiceCardArea
+  m_Name: SelectedCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

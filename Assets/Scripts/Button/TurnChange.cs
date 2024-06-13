@@ -1,5 +1,5 @@
 using UnityEngine;
-using Ensnare.Enums; 
+using Ensnare.Enums;
 
 public class TurnChange : MonoBehaviour,IButton
 {
@@ -7,13 +7,13 @@ public class TurnChange : MonoBehaviour,IButton
 
     public void OnClickGuestTurn()
     {
-        Debug.Log("GuestTurn");
         CurrentTurn = Turn.GuestTurn;
+        Debug.Log(CurrentTurn);
     }
 
     public void OnClickMasterTurn()
     {
-        Debug.Log("MasterTurn");
         CurrentTurn = Turn.MasterTurn;
+        Debug.Log(CurrentTurn);
     }
 }
