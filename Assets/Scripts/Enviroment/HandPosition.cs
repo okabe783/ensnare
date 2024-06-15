@@ -13,11 +13,11 @@ public class HandPosition : MonoBehaviour
         card.transform.SetParent(this.transform);
     }
 
-    // /// <summary>Cardの削除</summary>
-    // public void Remove(Card card)
-    // {
-    //     _cardList.Remove(card);
-    // }
+    /// <summary>Cardの削除</summary>
+    public void Remove(Card card)
+    {
+        _cardList.Remove(card);
+    }
     
     /// <summary>手札の場所を調整</summary>
     public void ResetPosition()
@@ -30,18 +30,18 @@ public class HandPosition : MonoBehaviour
         }
     }
 
-    // //手札が空かどうかの判定
-    // public bool IsEmpty()
-    // {
-    //     return _cardList.Count == 0;
-    // }
-    //
-    // public void ResetCard()
-    // {
-    //     foreach (var card in _cardList)
-    //     {
-    //         Destroy(card.gameObject);
-    //     }
-    //     _cardList.Clear();
-    // }
+    //手札が空かどうかの判定
+    public bool IsEmpty()
+    {
+        return _cardList.Count == 0;
+    }
+    
+    public void ResetCard()
+    {
+        foreach (var card in _cardList)
+        {
+            Destroy(card.gameObject);
+        }
+        _cardList.Clear();
+    }
 }

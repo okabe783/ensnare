@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
@@ -27,7 +28,12 @@ public class PhotonObjectManager : MonoBehaviourPunCallbacks
     //Characterに関する変数
     [SerializeField] private string[] _masterCharacter;
     [SerializeField] private string[] _guestCharacter;
-    
+
+    public List<ClickSelectCharacter> _masterCharacterList = new();
+    public List<ClickSelectCharacter> _guestCharacterList = new();
+
+    public GameObject Master { get; private set; }
+    public GameObject Guest { get; private set; }
 
     private void Start()
     {
@@ -68,7 +74,8 @@ public class PhotonObjectManager : MonoBehaviourPunCallbacks
 
                     if (characterIndex >= _masterCharacter.Length) continue;
                     //Characterをインスタンス化
-                    PhotonNetwork.Instantiate(_masterCharacter[characterIndex], avatarPosition, Quaternion.identity);
+                    var character = PhotonNetwork.Instantiate(_masterCharacter[characterIndex], avatarPosition, Quaternion.identity);
+                    _masterCharacterList.Add(character.GetComponent<ClickSelectCharacter>());
                     characterIndex++;
                 }
             }
@@ -87,8 +94,9 @@ public class PhotonObjectManager : MonoBehaviourPunCallbacks
                     var avatarPosition = secondPlayerObjectPosition;
                     avatarPosition.y += 0.5f;
                     if (characterIndex >= _guestCharacter.Length) continue;
-                    PhotonNetwork.Instantiate(_guestCharacter[characterIndex], avatarPosition,
+                    var character = PhotonNetwork.Instantiate(_guestCharacter[characterIndex], avatarPosition,
                         Quaternion.Euler(0, 180, 0));
+                    _guestCharacterList.Add(character.GetComponent<ClickSelectCharacter>());
                     characterIndex++;
                 }
             }
@@ -112,6 +120,7 @@ public class PhotonObjectManager : MonoBehaviourPunCallbacks
             var avatarPosition = _firstPlayerFieldPosition;
             avatarPosition.y += 0.5f;
             var masterAvatar = PhotonNetwork.Instantiate("Avatar", avatarPosition, Quaternion.identity);
+            Master = masterAvatar;
 
             // Playerの向きを取得
             _masterForwardDirection = masterAvatar.transform.forward;
@@ -126,6 +135,7 @@ public class PhotonObjectManager : MonoBehaviourPunCallbacks
             guestAvatarPosition.y = 0.5f;
 
             var guestAvatar = PhotonNetwork.Instantiate("Avatar", guestAvatarPosition, Quaternion.Euler(0, 180, 0));
+            Guest = guestAvatar;
 
             //Guestの向きを取得
             _guestForwardDirection = -guestAvatar.transform.forward;
