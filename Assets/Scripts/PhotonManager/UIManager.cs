@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class CreateCard : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    [SerializeField] private CardGenerator _generator;
-
+    [SerializeField, Header("Cardを配る")] private CardGenerator _generator;
+    
     /// <summary>GameがStartしたときhandを配る</summary>
     public void DrawCard()
     {

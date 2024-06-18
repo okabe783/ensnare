@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 public class ClickSelectCharacter : MonoBehaviour, IPointerClickHandler
 {
     private SelectedCard _checkCard;
-    [SerializeField] private Battle _battle;
     public int _powerValue { get; set; }
 
     public void Update()

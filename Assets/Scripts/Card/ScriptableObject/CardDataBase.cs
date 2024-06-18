@@ -1,10 +1,11 @@
 using UnityEngine;
 
+/// <summary>CardのScriptableObject</summary>
 [CreateAssetMenu(menuName = "Scriptable /Create Card")]
 public class CardDataBase : ScriptableObject
 {
-    public string _name;
-    public int _cardId;
+    public string _name;　
+    public int _cardId;　
     public int _power;
     public CardType _cardType;
     public Sprite iconImage;

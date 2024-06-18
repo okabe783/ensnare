@@ -2,17 +2,15 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class PhotonObjectManager : MonoBehaviourPunCallbacks
+public class GameObjectManager : MonoBehaviourPunCallbacks
 {
-    public static PhotonObjectManager Instance { get; private set; }
+    public static GameObjectManager Instance { get;}
 
     // 各オブジェクトの間隔
     [SerializeField, Header("行")] private float _rowSpacing = 2.0f;
     [SerializeField, Header("列")] private float _columnSpacing = 2.0f;
 
-    [SerializeField, Header("Playerからの距離")]
-    private float _frontOffset = 2.0f; // Playerの前に配置するためのオフセット
-
+    [SerializeField, Header("Playerからの距離")] private float _frontOffset = 2.0f; // Playerの前に配置するためのオフセット
     //FieldのPosition
     private Vector3 _firstPlayerFieldPosition = new();
     private Vector3 _secondPlayerFieldPosition = new();
@@ -34,19 +32,6 @@ public class PhotonObjectManager : MonoBehaviourPunCallbacks
 
     public GameObject Master { get; private set; }
     public GameObject Guest { get; private set; }
-
-    private void Start()
-    {
-        //シングルトン化
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        
-    }
 
     //Master用Characterを置くためのFieldを生成
     public void PhotonSetUpGameField()

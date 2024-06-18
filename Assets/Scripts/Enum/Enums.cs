@@ -9,7 +9,7 @@ namespace Ensnare.Enums //nameSpaceを記載してUsingで使用できるよう�
     public enum Phase
     {
         StartPhase,
-        RefreshPhase,
+        AfterSecondStart,
         MainPhase,
         BattlePhase,
         EndPhase,

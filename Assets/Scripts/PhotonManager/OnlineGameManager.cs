@@ -8,13 +8,15 @@ using Photon.Pun.UtilityScripts;
 [RequireComponent(typeof(PunTurnManager))]
 public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
 {
-    private PunTurnManager _punTurnManager;
+    [SerializeField] private TurnPhase _turn; //ターン中の各Phaseを管理
+    [SerializeField] private UIManager _uiManager;
+    [SerializeField] private PunTurnManager _punTurnManager;
 
-    private void Start()
+    /// <summary>Cardを引く</summary>
+    private void Draw()
     {
-        _punTurnManager = GetComponent<PunTurnManager>();
+        _uiManager.DrawCard();
     }
-
     //ターンの開始時
     void IPunTurnManagerCallbacks.OnTurnBegins(int turn) { }
     //プレイヤーの行動終了時

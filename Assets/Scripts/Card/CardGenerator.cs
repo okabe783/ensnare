@@ -1,36 +1,30 @@
 using UnityEngine;
 
-/// <summary>
-/// Cardを生成する為のscript
-/// GeneratorObjectにアタッチする
-/// </summary>
+/// <summary>Cardを生成する為のscript</summary>
 public class CardGenerator : MonoBehaviour
 {
-    [SerializeField] private HandPosition _handPos;
-    public CardDataBase[] _playerCardDataBases;
-    public Card _card;
-    //public bool _isSelected { get; private set; }
+    [SerializeField,Header("手札を管理するPosition")] private HandPosition _handPos;
+    [SerializeField] private CardDataBase[] _playerCardDataBases;
+    [SerializeField] private Card _card;
 
     /// <summary>Cardを生成</summary>
-    public Card CardSpawn(int cardNumber)
+    public void CardSpawn(int cardNumber)
     {
-        var card = Instantiate(_card);
-        //CardがPlayer用なら
+        var card = Instantiate(_card); 
         card.CardSet(_playerCardDataBases[cardNumber]);
         AddHand(card);
-        return card;
     }
 
     /// <summary>手札にCardを追加</summary>
     private void AddHand(Card card)
     {
         _handPos.Add(card);
-        //card.OnClickCard = SelectCard;
     }
 
+    //手札の位置を調整する
     public void ResetPosition()
     {
-        _handPos.ResetPosition();
+        _handPos.ResetHandPosition();
     }
 }
 

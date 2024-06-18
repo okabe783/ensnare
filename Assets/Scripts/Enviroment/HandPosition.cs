@@ -20,7 +20,7 @@ public class HandPosition : MonoBehaviour
     }
     
     /// <summary>手札の場所を調整</summary>
-    public void ResetPosition()
+    public void ResetHandPosition()
     {
         for (var i = 0; i < _cardList.Count; i++)
         {
