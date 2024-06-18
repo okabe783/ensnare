@@ -3,9 +3,7 @@ using Photon.Pun;
 using UnityEngine;
 
 public class GameObjectManager : MonoBehaviourPunCallbacks
-{
-    public static GameObjectManager Instance { get;}
-
+{ 
     // 各オブジェクトの間隔
     [SerializeField, Header("行")] private float _rowSpacing = 2.0f;
     [SerializeField, Header("列")] private float _columnSpacing = 2.0f;

@@ -11,12 +11,14 @@ public class HandPosition : MonoBehaviour
     {
         _cardList.Add(card);
         card.transform.SetParent(this.transform);
+        ResetHandPosition();
     }
 
     /// <summary>Cardの削除</summary>
-    public void Remove(Card card)
+    public void RemoveCard(Card card)
     {
         _cardList.Remove(card);
+        ResetHandPosition();
     }
     
     /// <summary>手札の場所を調整</summary>

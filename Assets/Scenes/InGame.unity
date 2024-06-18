@@ -396,6 +396,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &775932867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 775932868}
+  m_Layer: 0
+  m_Name: ChoiceCardArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &775932868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775932867}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7400187, y: 2.57, z: 8.209994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1072169483
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,8 +439,10 @@ GameObject:
   - component: {fileID: 1072169485}
   - component: {fileID: 1072169486}
   - component: {fileID: 1072169487}
+  - component: {fileID: 1072169488}
+  - component: {fileID: 1072169489}
   m_Layer: 0
-  m_Name: OnlineGameManager
+  m_Name: System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -442,7 +475,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719000bc6b10d7c419f3c26527c0589f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _turn: {fileID: 0}
   _uiManager: {fileID: 2036906711}
   _punTurnManager: {fileID: 1072169486}
 --- !u!114 &1072169486
@@ -471,30 +503,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxPlayerCount: 2
---- !u!1 &1163537487
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1163537489}
-  - component: {fileID: 1163537488}
-  m_Layer: 0
-  m_Name: ObjectManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1163537488
+  _onlineGameManager: {fileID: 1072169485}
+--- !u!114 &1072169488
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163537487}
+  m_GameObject: {fileID: 1072169483}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92841070f9469864da3bb61bb5d88300, type: 3}
@@ -517,21 +533,21 @@ MonoBehaviour:
   - 10
   - 11
   - 12
---- !u!4 &1163537489
-Transform:
+--- !u!114 &1072169489
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163537487}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1072169483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed49805e19d77a54891db33316cb93ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectMovePosition: {fileID: 0}
+  _selectedCard: {fileID: 0}
+  _handPos: {fileID: 0}
 --- !u!1 &1169459246
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,7 +899,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 80eec23e91668234e981592afebe470a, type: 2}
   - {fileID: 11400000, guid: 6c8ef74853fb6a348a852275d9ab1365, type: 2}
   - {fileID: 11400000, guid: 8d70955fcc338f34c8c74b5f1462ea0e, type: 2}
-  _card: {fileID: 4336786534588539073, guid: 7ba25634ae0202a49b59c5f57986110d, type: 3}
+  _cardPrefab: {fileID: 4336786534588539073, guid: 7ba25634ae0202a49b59c5f57986110d, type: 3}
 --- !u!4 &1999721674
 Transform:
   m_ObjectHideFlags: 0
@@ -999,7 +1015,6 @@ SceneRoots:
   - {fileID: 1397059872}
   - {fileID: 571763873}
   - {fileID: 1072169484}
-  - {fileID: 1163537489}
   - {fileID: 2036906710}
   - {fileID: 1996528955}
   - {fileID: 1999721674}
@@ -1007,3 +1022,4 @@ SceneRoots:
   - {fileID: 723712407}
   - {fileID: 2121187764}
   - {fileID: 1190339634}
+  - {fileID: 775932868}

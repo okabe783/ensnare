@@ -1,25 +1,41 @@
+using System;
 using UnityEngine;
 
 /// <summary>選択されたCardに関するScript</summary>
 public class SelectedCard : MonoBehaviour
 {
-    //選択されたCardを管理
-    public Card _isSelectCard { get; private set; }
-    
-    //自分の子要素にして位置を自分の位置に合わせる
-    public void Set(Card card)
-    {
-        _isSelectCard = card;
-        card.transform.SetParent(transform);
-        card.transform.position = transform.position;
-    }
+    private Transform _choiceCardArea;
+    private HandPosition _handPosition;
 
-    //Cardの削除
-    public void DestroyCard()
+    private void Start()
     {
-        if (_isSelectCard != null)
+        _handPosition = FindObjectOfType<HandPosition>();
+        _choiceCardArea = GameObject.Find("ChoiceCardArea").transform;
+        
+        // カードがクリックされたときに SetChoiceCard を実行する
+        var card = GetComponent<Card>(); // この例では同じオブジェクトにアタッチされている Card コンポーネントを取得する
+        if (card != null)
         {
-            Destroy(_isSelectCard.gameObject);
+            card.OnClickCard += SetChoiceCard;
         }
     }
+    private void SetChoiceCard(Card selectCard)
+    {
+        // すでに移動先にカードが存在している場合
+        if (_choiceCardArea.childCount > 0)
+        {
+            // 先頭のカードを手札に戻す
+            var existingCard = _choiceCardArea.GetChild(0).GetComponent<Card>();
+            _handPosition.Add(existingCard);
+            Destroy(existingCard.gameObject);
+        }
+
+        // 選択されたカードを移動先に配置する
+        selectCard.transform.SetParent(_choiceCardArea);
+        selectCard.transform.localPosition = Vector3.zero; // 移動先の中心に配置する
+
+        // 選択されたカードを手札から削除する
+        _handPosition.RemoveCard(selectCard);
+    }
 }
+    
