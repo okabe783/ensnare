@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class PanelSetUp : MonoBehaviour,ISetPanel
+public class PanelSetUp : MonoBehaviour
 {
     /// <summary>各Phaseの開始時にPanelを有効にする</summary>
     /// <param name="panel"></param>

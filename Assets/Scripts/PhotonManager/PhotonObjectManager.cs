@@ -29,8 +29,8 @@ public class PhotonObjectManager : MonoBehaviourPunCallbacks
     [SerializeField] private string[] _masterCharacter;
     [SerializeField] private string[] _guestCharacter;
 
-    public List<ClickSelectCharacter> _masterCharacterList = new();
-    public List<ClickSelectCharacter> _guestCharacterList = new();
+    public List<ClickSelectCharacter> MasterCharacterList { get; } = new();
+    public List<ClickSelectCharacter> GuestCharacterList { get; } = new();
 
     public GameObject Master { get; private set; }
     public GameObject Guest { get; private set; }
@@ -75,7 +75,7 @@ public class PhotonObjectManager : MonoBehaviourPunCallbacks
                     if (characterIndex >= _masterCharacter.Length) continue;
                     //Characterをインスタンス化
                     var character = PhotonNetwork.Instantiate(_masterCharacter[characterIndex], avatarPosition, Quaternion.identity);
-                    _masterCharacterList.Add(character.GetComponent<ClickSelectCharacter>());
+                    MasterCharacterList.Add(character.GetComponent<ClickSelectCharacter>());
                     characterIndex++;
                 }
             }
@@ -96,7 +96,7 @@ public class PhotonObjectManager : MonoBehaviourPunCallbacks
                     if (characterIndex >= _guestCharacter.Length) continue;
                     var character = PhotonNetwork.Instantiate(_guestCharacter[characterIndex], avatarPosition,
                         Quaternion.Euler(0, 180, 0));
-                    _guestCharacterList.Add(character.GetComponent<ClickSelectCharacter>());
+                    GuestCharacterList.Add(character.GetComponent<ClickSelectCharacter>());
                     characterIndex++;
                 }
             }

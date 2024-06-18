@@ -18,15 +18,15 @@ public class ClickSelectCharacter : MonoBehaviour, IPointerClickHandler
     /// <summary>CharacterがClickされたときの処理</summary>
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (_checkCard._isSelectCard != null && GameManager.Instance._turn == Phase.MainPhase)
-        {
-            _powerValue += _checkCard._isSelectCard.Power;　//CharacterにCardの攻撃力を加算
-            _checkCard.DestroyCard();　//使用したCardを削除
-        }
-
-        if (GameManager.Instance._turn == Phase.BattlePhase)
-        {
-            _battle.SelectCharacter(this);
-        }
+        // if (_checkCard._isSelectCard != null && OnlineGameManager.Instance._turn == Phase.MainPhase)
+        // {
+        //     _powerValue += _checkCard._isSelectCard.Power;　//CharacterにCardの攻撃力を加算
+        //     _checkCard.DestroyCard();　//使用したCardを削除
+        // }
+        //
+        // if (OnlineGameManager.Instance._turn == Phase.BattlePhase)
+        // {
+        //     _battle.SelectCharacter(this);
+        // }
     }
 }

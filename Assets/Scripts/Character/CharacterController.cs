@@ -20,9 +20,9 @@ public class CharacterController : MonoBehaviour
     //StartPhase開始時にアニメーションを実行
     private void PhaseAnimation()
     {
-        if (GameManager.Instance._turn == Phase.StartPhase)
-        {
-            _animator.SetTrigger(_hashStartPhase);
-        }
+        // if (OnlineGameManager.Instance._turn == Phase.StartPhase)
+        // {
+        //     _animator.SetTrigger(_hashStartPhase);
+        // }
     }
 }
