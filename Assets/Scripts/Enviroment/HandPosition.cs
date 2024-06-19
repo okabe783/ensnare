@@ -10,7 +10,7 @@ public class HandPosition : MonoBehaviour
     public void Add(Card card)
     {
         _cardList.Add(card);
-        card.transform.SetParent(this.transform);
+        card.transform.SetParent(this.transform); //自分自身を子要素にする
         ResetHandPosition();
     }
 
@@ -18,7 +18,6 @@ public class HandPosition : MonoBehaviour
     public void RemoveCard(Card card)
     {
         _cardList.Remove(card);
-        ResetHandPosition();
     }
     
     /// <summary>手札の場所を調整</summary>
