@@ -1,14 +1,16 @@
-using Ensnare.Enums;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class MainPhase : MonoBehaviour
+public class MainPhase : PanelSetUp
 {
     [SerializeField] private GameObject _mainPanel;
-    [SerializeField] private PanelSetUp panelSetUp;
+    [SerializeField] private Text _phaseText;
 
     /// <summary>MainPhasePanelをセット</summary>
     public void MainPhaseSetUp()
     {
-        panelSetUp.BeginPhase(_mainPanel);
+        _phaseText.text = "Main Phase";
+        BeginPhase(_mainPanel);
+        Debug.Log("MainPhaseに移行");
     }
 }

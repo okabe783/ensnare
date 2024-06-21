@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class BattlePhase : MonoBehaviour
+public class BattlePhase : PanelSetUp
 {
     [SerializeField] private GameObject _battlePanel;
-    [SerializeField] private PanelSetUp panelSetUp;
     [SerializeField] private GameObject _button;
     private readonly ClickSelectCharacter[] _selectCharacters = new ClickSelectCharacter[1];
     
     /// <summary>BattlePhasePanelをset</summary>
     public void BattlePhaseSetUp()
     {
-        panelSetUp.BeginPhase(_battlePanel);
+        BeginPhase(_battlePanel);
         _button.SetActive(true);
     }
     

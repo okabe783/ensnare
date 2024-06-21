@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -6,38 +5,19 @@ using UnityEngine.EventSystems;
 public class ClickSelectCharacter : MonoBehaviour, IPointerClickHandler,IClick
 {
     public int _powerValue { get; set; }
-    private CardSelector _cardSelector;
-
-    private void Start()
-    {
-        _cardSelector = FindObjectOfType<CardSelector>();
-        if(_cardSelector != null)
-            _cardSelector.AddObserver(this);
-    }
 
     /// <summary>CharacterがClickされたときの処理</summary>
     public void OnPointerClick(PointerEventData eventData)
     {
         var selectPosition = FindObjectOfType<SelectPosition>();
-        if (selectPosition != null && selectPosition.SelectCard != null)
-        {
-            _powerValue += selectPosition.SelectCard.Power;
-            selectPosition.DestroyCard();
-        }
+        if (selectPosition == null || selectPosition.SelectCard == null) return;
+        
+        _powerValue += selectPosition.SelectCard.Power;
+        selectPosition.DestroyCard();
+        Debug.Log(_powerValue);
     }
     
-    public void OnCardSelected(Card card)
-    {
-        
-    }
-    //
-    // private void OnDestroy()
-    // {
-    //     if (_cardSelector != null)
-    //     {
-    //         _cardSelector.RemoveObserver(this);
-    //     }
-    // }
+    public void OnCardSelected(Card card) { }
 }
 // if (_checkCard._isSelectCard != null && OnlineGameManager.Instance._turn == Phase.MainPhase)
 // {

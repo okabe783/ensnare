@@ -1,19 +1,19 @@
 using System.Collections;
+using Ensnare.Enums;
 using UnityEngine;
 
 public class PanelSetUp : MonoBehaviour
 {
     /// <summary>各Phaseの開始時にPanelを有効にする</summary>
-    /// <param name="panel"></param>
-    public void BeginPhase(GameObject panel)
+    protected void BeginPhase(GameObject panel)
     {
         panel.SetActive(true);
-        StartCoroutine(PanelActive());
-        panel.SetActive(false);
+        StartCoroutine(PanelActive(panel));
     }
     
-    private static IEnumerator PanelActive()
+    private static IEnumerator PanelActive(GameObject panel)
     {
         yield return new WaitForSeconds(1f);
+        panel.SetActive(false);
     }
 }

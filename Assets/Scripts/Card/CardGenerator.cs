@@ -31,15 +31,16 @@ public class CardGenerator : MonoBehaviour
     private void AddHand(Card card)
     {
         _handPos.Add(card);
-        card.OnClickCard = OnClickCard;
+        card.OnClickCard = OnClickCard;　//イベントアクションに登録する
     }
 
+    //通知を送る
     private void OnClickCard(Card card)
     {
         _cardSelector.NotifyCardSelected(card);
     }
     
-    //手札の位置を調整する
+    /// <summary>手札の位置を調整する</summary>
     public void ResetPosition()
     {
         _handPos.ResetHandPosition();

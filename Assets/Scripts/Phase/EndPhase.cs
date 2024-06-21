@@ -1,13 +1,12 @@
 using UnityEngine;
 
-public class EndPhase : MonoBehaviour
+public class EndPhase : PanelSetUp
 {
     [SerializeField] private GameObject _endPanel;
-    [SerializeField] private PanelSetUp panelSetUp;
     
     /// <summary>EndPhasePanelをセット</summary>
     public void EndPhaseSetUp()
     {
-        panelSetUp.BeginPhase(_endPanel);
+        BeginPhase(_endPanel);
     }
 }

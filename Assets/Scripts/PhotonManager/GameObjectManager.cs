@@ -25,6 +25,8 @@ public class GameObjectManager : MonoBehaviourPunCallbacks
     [SerializeField] private string[] _masterCharacter;
     [SerializeField] private string[] _guestCharacter;
 
+    [SerializeField] private GameObject _cameraPrefab;
+
     public List<ClickSelectCharacter> MasterCharacterList { get; } = new();
     public List<ClickSelectCharacter> GuestCharacterList { get; } = new();
 
@@ -96,6 +98,7 @@ public class GameObjectManager : MonoBehaviourPunCallbacks
         {
             //playerFieldをインスタンス化してその位置を取得する
             var firstPlayer = PhotonNetwork.Instantiate("PlayerField", firstPlayerPosition, Quaternion.identity);
+            
             //FieldのPositionを取得
             _firstPlayerFieldPosition = firstPlayer.transform.position;
 
@@ -105,6 +108,11 @@ public class GameObjectManager : MonoBehaviourPunCallbacks
             var masterAvatar = PhotonNetwork.Instantiate("Avatar", avatarPosition, Quaternion.identity);
             Master = masterAvatar;
 
+            //Camera
+            var masterCamera = Instantiate(_cameraPrefab, masterAvatar.transform);
+            masterCamera.transform.position = masterAvatar.transform.position + new Vector3(0.3f,4.5f,-4.6f);
+            masterCamera.transform.rotation = Quaternion.Euler(34,0,0);
+            
             // Playerの向きを取得
             _masterForwardDirection = masterAvatar.transform.forward;
             _masterRightDirection = masterAvatar.transform.right;
@@ -117,8 +125,17 @@ public class GameObjectManager : MonoBehaviourPunCallbacks
             var guestAvatarPosition = _secondPlayerFieldPosition;
             guestAvatarPosition.y = 0.5f;
 
-            var guestAvatar = PhotonNetwork.Instantiate("Avatar", guestAvatarPosition, Quaternion.Euler(0, 180, 0));
+            var guestAvatar = PhotonNetwork.Instantiate("EnemyAvatar", guestAvatarPosition, Quaternion.Euler(0, 180, 0));
             Guest = guestAvatar;
+            
+            //EnemyCamera
+            var guestCamera = Instantiate(_cameraPrefab, guestAvatar.transform);
+            Debug.Log(guestCamera); 
+            //Todo: 今(-0.3 4,-4.6) 逆にすると何故か正しくなる
+            var cameraPosition = new Vector3(-0.3f, 4.0f, 4.6f);
+            
+            guestCamera.transform.position = guestAvatar.transform.position + cameraPosition;
+            guestCamera.transform.rotation = Quaternion.Euler(34,180,0);
 
             //Guestの向きを取得
             _guestForwardDirection = -guestAvatar.transform.forward;

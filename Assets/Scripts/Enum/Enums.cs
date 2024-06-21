@@ -8,6 +8,7 @@ namespace Ensnare.Enums //nameSpaceを記載してUsingで使用できるよう�
 
     public enum Phase
     {
+        none,
         StartPhase,
         AfterSecondStart,
         MainPhase,

@@ -7,16 +7,15 @@ public class SelectPosition : MonoBehaviour,IClick
 
     private void Start()
     {
-        var cardSelector = FindObjectOfType<CardSelector>();
+        var cardSelector = FindObjectOfType<CardSelector>(); //監視クラスを追加
 
-        if (cardSelector != null)
-        {
-            cardSelector.AddObserver(this);
-            cardSelector.SelectPosition = this;
-        }
+        if (cardSelector == null) return;
+        
+        cardSelector.AddObserver(this);　//通知を受け取る側として追加する
+        cardSelector.SelectPosition = this;　
     }
     
-    //自分の子要素にする。位置を合わせる
+    /// <summary>自分の子要素にする。位置を合わせる</summary>
     public void Set(Card card)
     {
         SelectCard = card;
@@ -24,15 +23,15 @@ public class SelectPosition : MonoBehaviour,IClick
         card.transform.position = transform.position;
     }
 
+    /// <summary>カードを削除</summary>
     public void DestroyCard()
     {
-        if (SelectCard != null)
-        {
-            Destroy(SelectCard.gameObject);
-            SelectCard = null;
-        }
+        if (SelectCard == null) return;
+        Destroy(SelectCard.gameObject);
+        SelectCard = null;
     }
 
+    /// <summary>通知がきたら</summary>
     public void OnCardSelected(Card card)
     {
         // ここでカードをセットする

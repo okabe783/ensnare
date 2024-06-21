@@ -28,6 +28,6 @@ public class Card : MonoBehaviour
     /// <summary>CardがClickされたことを通知する</summary>
     public void OnClick()
     {
-        OnClickCard?.Invoke(this);
+        OnClickCard?.Invoke(this);　//自分を登録
     }
 }

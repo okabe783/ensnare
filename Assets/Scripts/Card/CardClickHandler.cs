@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>カードがクリックされた時通知を飛ばす</summary>
 public class CardClickHandler : MonoBehaviour,IPointerClickHandler
 {
     private CardSelector _cardSelector;
@@ -12,6 +13,7 @@ public class CardClickHandler : MonoBehaviour,IPointerClickHandler
         card = GetComponent<Card>();
     }
     
+    /// <summary>通知を送る</summary>
     public void OnPointerClick(PointerEventData eventData)
     {
         if (_cardSelector != null && card != null)

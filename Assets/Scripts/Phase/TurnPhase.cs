@@ -1,5 +1,7 @@
+using System.Collections;
 using Ensnare.Enums;
 using UnityEngine;
+using UniRx;
 
 /// <summary>各Phaseを管理</summary>
 public class TurnPhase : MonoBehaviour
@@ -8,6 +10,21 @@ public class TurnPhase : MonoBehaviour
     [SerializeField] private MainPhase _mainPhase;
     [SerializeField] private BattlePhase _battlePhase;
     [SerializeField] private EndPhase _endPhase;
+
+    //ToDo:UniRX
+    private ReactiveProperty<Phase> _currentPhase = new(Phase.none);
+
+    public Phase CurrentPhase
+    {
+        get => _currentPhase.Value;
+        set => _currentPhase.Value = value;
+    }
+
+    private void Start()
+    {
+        _currentPhase.ObserveEveryValueChanged(phase => phase.Value)
+            .Subscribe(newPhase => { SetPhasePanel(newPhase); }).AddTo(this);
+    }
 
     /// <summary>各Phaseに合わせてPanelをアクティブにする</summary>
     public void SetPhasePanel(Phase currentPhase)
@@ -18,15 +35,22 @@ public class TurnPhase : MonoBehaviour
                 _startPhase.StartPhaseSetUp();
                 break;
             case Phase.MainPhase:
-                _mainPhase.MainPhaseSetUp();
+                StartCoroutine(ChangeMainPhase());
                 break;
             case Phase.BattlePhase:
                 _battlePhase.BattlePhaseSetUp();
                 break;
-                case Phase.EndPhase:
-                    _endPhase.EndPhaseSetUp();
-                    break;
+            case Phase.EndPhase:
+                _endPhase.EndPhaseSetUp();
+                break;
         }
+    }
+
+    //MainPhaseに移行するのを遅らせる
+    private IEnumerator ChangeMainPhase()
+    {
+        yield return new WaitForSeconds(2);
+        _mainPhase.MainPhaseSetUp();
     }
 
     /// <summary>先行2ターン目以降はカードをリセットする必要がある</summary>
