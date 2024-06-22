@@ -15,6 +15,7 @@ public class Card : MonoBehaviour
     [SerializeField] private int _power;
 
     public int Power => _power;
+    public bool IsPlayer { get; set; }
 
     //ScriptableObjectで設定したCardを読み込む
     public void CardSet(CardDataBase cardDataBase)

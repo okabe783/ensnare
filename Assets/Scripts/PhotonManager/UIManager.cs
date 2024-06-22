@@ -1,4 +1,5 @@
 using UnityEngine;
+using Photon.Pun;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,9 +10,18 @@ public class UIManager : MonoBehaviour
     {
         for (var i = 0; i < 6; i++)
         {
-            _generator.CardSpawn(i); //Cardを配る
+            if (PhotonNetwork.IsMasterClient)
+            {
+                _generator.MasterCardSpawn(i,true); //Cardを配る
+                _generator.MasterCardSpawn(i,false);
+            }
+            else
+            {
+                _generator.GuestCardSpawn(i, true);
+                _generator.GuestCardSpawn(i, false);
+            }
         }
 
-        _generator.ResetPosition();
+        _generator.ResetPosition(); //手札を整える
     }
 }

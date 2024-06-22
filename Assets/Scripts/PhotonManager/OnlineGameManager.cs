@@ -1,6 +1,4 @@
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 using Photon.Pun;
 using Ensnare.Enums;
 using Photon.Pun.UtilityScripts;

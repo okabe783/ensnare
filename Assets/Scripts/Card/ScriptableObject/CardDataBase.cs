@@ -17,6 +17,7 @@ public class CardDataBase : ScriptableObject
 
     public enum CardType
     {
+        none,
         Weapon,
         Trap,
     }

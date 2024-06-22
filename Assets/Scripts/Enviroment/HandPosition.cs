@@ -4,45 +4,77 @@ using UnityEngine;
 /// <summary>手札となる場所にアタッチする</summary>
 public class HandPosition : MonoBehaviour
 {
-    private readonly List<Card> _cardList = new();
-
+    private List<Card> _masterCardList = new();
+    private List<Card> _guestCardList = new();
+    
     //親をPlayerのHandPositionにしてCardをその子要素に設置
-    public void Add(Card card)
+    public void Add(Card card,bool isPlayer)
     {
-        _cardList.Add(card);
-        card.transform.SetParent(this.transform); //自分自身を子要素にする
-        ResetHandPosition();
+        if (isPlayer)
+        {
+            _masterCardList.Add(card);
+            card.transform.SetParent(transform);
+        }
+        else
+        {
+            _guestCardList.Add(card);
+            card.transform.SetParent(transform); //自分自身を子要素にする
+        }
+        
+        ResetHandPosition(isPlayer); //手札の位置を調整
     }
 
     /// <summary>Cardの削除</summary>
-    public void RemoveCard(Card card)
+    public void RemoveCard(Card card,bool isPlayer)
     {
-        _cardList.Remove(card);
+        if (isPlayer)
+        {
+            _masterCardList.Remove(card);
+        }
+        else
+        {
+            _guestCardList.Remove(card);
+        }
     }
     
     /// <summary>手札の場所を調整</summary>
-    public void ResetHandPosition()
+    public void ResetHandPosition(bool isPlayer)
     {
-        for (var i = 0; i < _cardList.Count; i++)
+        var cardList = isPlayer ? _masterCardList : _guestCardList;
+        if (isPlayer)
         {
-            var posZ = i * 1.8f; 
-            //手札の場所を指定
-            _cardList[i].transform.localPosition = new Vector3(0, 0,posZ);
+            for (var i = 0; i < cardList.Count; i++)
+            {
+                var posZ = i * 1.8f; 
+                //手札の場所を指定
+                cardList[i].transform.localPosition = new Vector3(0, 0,posZ);
+            }
+        }
+        else
+        {
+            for (var i = 0; i < cardList.Count; i++)
+            {
+                var posZ = i * 1.3f; 
+                //手札の場所を指定
+                cardList[i].transform.localPosition = new Vector3(0, 0,posZ);
+            }
         }
     }
 
     //手札が空かどうかの判定
-    public bool IsEmpty()
+    public bool IsEmpty(bool isPlayer)
     {
-        return _cardList.Count == 0;
+        return isPlayer ? _masterCardList.Count == 0 : _guestCardList.Count == 0;
     }
     
-    public void ResetCard()
+    //カードの削除
+    public void ResetCard(bool isPlayer)
     {
-        foreach (var card in _cardList)
+        var cardList = isPlayer ? _masterCardList : _guestCardList;
+        foreach (var card in _masterCardList)
         {
             Destroy(card.gameObject);
         }
-        _cardList.Clear();
+        cardList.Clear();
     }
 }

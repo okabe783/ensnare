@@ -220,6 +220,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainPanel: {fileID: 146853201}
   _phaseText: {fileID: 961118962}
+--- !u!1 &280283871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 280283873}
+  - component: {fileID: 280283872}
+  m_Layer: 0
+  m_Name: ChoiceGuestCardArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &280283872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280283871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfb499af00dfb1e47a776c97da7274ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &280283873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280283871}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.31, y: 1.63, z: 11.53}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &313495292
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +388,7 @@ GameObject:
   - component: {fileID: 723712404}
   - component: {fileID: 723712403}
   m_Layer: 0
-  m_Name: HandPosition
+  m_Name: PlayerHandPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -443,7 +487,7 @@ Transform:
   m_GameObject: {fileID: 723712402}
   serializedVersion: 2
   m_LocalRotation: {x: 0.073912784, y: 0.7032332, z: 0.073912784, w: 0.7032332}
-  m_LocalPosition: {x: -2.4, y: 0.62, z: -1.4501112}
+  m_LocalPosition: {x: -2.78, y: 0.62, z: -1.4501112}
   m_LocalScale: {x: 0.15139922, y: 0.5, z: 0.6529666}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -465,7 +509,7 @@ GameObject:
   - component: {fileID: 775932868}
   - component: {fileID: 775932869}
   m_Layer: 0
-  m_Name: ChoiceCardArea
+  m_Name: ChoiceMasterCardArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1049,6 +1093,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1714871722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1714871724}
+  - component: {fileID: 1714871723}
+  m_Layer: 0
+  m_Name: EnemyHandPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1714871723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714871722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31354eae9751f07448a3eb92ef5ed00b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1714871724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714871722}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -3.37, y: 1.11, z: 11.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1996528954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,6 +1179,7 @@ GameObject:
   - component: {fileID: 1999721674}
   - component: {fileID: 1999721673}
   - component: {fileID: 1999721675}
+  - component: {fileID: 1999721676}
   m_Layer: 0
   m_Name: CardGenerater
   m_TagString: Untagged
@@ -1110,15 +1199,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7aae5da626ba034d873069acd089576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _handPos: {fileID: 723712403}
-  _playerCardDataBases:
-  - {fileID: 11400000, guid: f054d7544d08f024e9d2831c0a2f57b2, type: 2}
-  - {fileID: 11400000, guid: 3851cc62659dc9a4ba17351142108b6b, type: 2}
+  _masterHandPos: {fileID: 723712403}
+  _guestHandPos: {fileID: 1714871723}
+  _cardDataBases:
   - {fileID: 11400000, guid: 82d6f53e64add5241b5ddc7adfed1b8f, type: 2}
   - {fileID: 11400000, guid: 80eec23e91668234e981592afebe470a, type: 2}
   - {fileID: 11400000, guid: 6c8ef74853fb6a348a852275d9ab1365, type: 2}
   - {fileID: 11400000, guid: 8d70955fcc338f34c8c74b5f1462ea0e, type: 2}
-  _cardPrefab: {fileID: 4336786534588539073, guid: 7ba25634ae0202a49b59c5f57986110d, type: 3}
+  - {fileID: 11400000, guid: f054d7544d08f024e9d2831c0a2f57b2, type: 2}
+  - {fileID: 11400000, guid: 9c0eb7034007cfd449743855368681a3, type: 2}
+  _cardPrefab: {fileID: 5211787216588720978, guid: 7ba25634ae0202a49b59c5f57986110d, type: 3}
+  _enemyCardPrefab: {fileID: 5211787216588720978, guid: 939f4786241f05041967babaa8494234, type: 3}
 --- !u!4 &1999721674
 Transform:
   m_ObjectHideFlags: 0
@@ -1146,7 +1237,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4baedd557c36afe45b8968412937bb5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <HandPosition>k__BackingField: {fileID: 723712403}
+  _selectMasterPosition: {fileID: 775932869}
+  _selectGuestPosition: {fileID: 280283872}
+  <MasterHandPosition>k__BackingField: {fileID: 723712403}
+  <GuestHandPosition>k__BackingField: {fileID: 1714871723}
+--- !u!114 &1999721676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999721672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 4
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2036906707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1317,8 +1433,10 @@ SceneRoots:
   - {fileID: 1999721674}
   - {fileID: 313495293}
   - {fileID: 723712407}
+  - {fileID: 1714871724}
   - {fileID: 2121187764}
   - {fileID: 1190339634}
   - {fileID: 775932868}
+  - {fileID: 280283873}
   - {fileID: 947889009}
   - {fileID: 392659320}

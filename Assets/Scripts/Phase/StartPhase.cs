@@ -41,6 +41,6 @@ public class StartPhase : PanelSetUp
     /// <summary>2ターン目以降のスタート時に呼び出される</summary>
     public void SetUpNextTurn()
     {
-        _handPosition.ResetCard();
+        //_handPosition.ResetCard();
     }
 }
