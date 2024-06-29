@@ -1,4 +1,5 @@
 using Photon.Pun;
+using UnityEngine;
 
 /// <summary>Clickされたカードが置かれる場所</summary>
 public class SelectPosition : MonoBehaviourPunCallbacks,IClick
@@ -25,7 +26,6 @@ public class SelectPosition : MonoBehaviourPunCallbacks,IClick
     /// <summary>カードを削除</summary>
     public void DestroyCard()
     {
-        if (SelectCard == null) return;
         Destroy(SelectCard.gameObject);
         SelectCard = null;
     }

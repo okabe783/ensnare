@@ -1,32 +1,29 @@
 using UnityEngine;
-using Ensnare.Enums;
 using Photon.Pun;
+using UnityEngine.UI;
 
 /// <summary>UI実装Manager</summary>
 public class ClickButton : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private TurnChange _turnChange;
-    [SerializeField] private GameObject _buttonUI;
-    private IButton _button;
+    [SerializeField] private OnlineGameManager _onlineGameManager;
+    [SerializeField] private Button _endTurnButton;
 
-    private void Awake()
+    private void Start()
     {
-        _button = _turnChange;
+        // ボタンのクリックイベントにメソッドを登録
+        _endTurnButton.onClick.AddListener(OnEndTurnButtonClicked);
+    }
+    
+    /// <summary>ターン終了ボタンがクリックされたときに呼び出されるメソッド</summary>
+    private void OnEndTurnButtonClicked()
+    {
+        EndToChange();
     }
 
-    /// <summary>指定の関数を全てのクライアントに送る</summary>
-    public void OnClickTurnChange()
+    /// <summary>ターンを終了し、次のターンに進めるメソッド</summary>
+    private void EndToChange()
     {
-        photonView.RPC("RPCOnclickTurnChange",RpcTarget.All);
-    }
-
-    /// <summary>Turnを切り替える</summary>
-    [PunRPC]
-    public void RPCOnclickTurnChange()
-    {
-        if (_turnChange.CurrentTurn == Turn.GuestTurn)
-            _button.OnClickMasterTurn();
-        else
-            _button.OnClickGuestTurn();
+        _onlineGameManager.EndTurn();
+        _endTurnButton.interactable = false;
     }
 }

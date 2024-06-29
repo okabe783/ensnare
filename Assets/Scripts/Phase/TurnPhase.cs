@@ -10,8 +10,7 @@ public class TurnPhase : MonoBehaviour
     [SerializeField] private MainPhase _mainPhase;
     [SerializeField] private BattlePhase _battlePhase;
     [SerializeField] private EndPhase _endPhase;
-
-    //ToDo:UniRX
+    
     private ReactiveProperty<Phase> _currentPhase = new(Phase.none);
 
     public Phase CurrentPhase

@@ -1,4 +1,3 @@
-using Photon.Pun;
 using UnityEngine;
 
 /// <summary>Cardを生成する為のscript</summary>
@@ -7,8 +6,7 @@ public class CardGenerator : MonoBehaviour
     [SerializeField, Header("Masterの手札を管理するPosition")] private HandPosition _masterHandPos;
 
     [SerializeField, Header("Guestの手札を管理するPosition")] private HandPosition _guestHandPos;
-
-    //生成するカードは同じだが変わる可能性があるのでわける
+    
    [SerializeField] private CardDataBase[] _cardDataBases;
     
     [SerializeField,Header("カードオブジェクト")] private GameObject _cardPrefab;
@@ -20,9 +18,9 @@ public class CardGenerator : MonoBehaviour
     {
         _cardSelector = FindObjectOfType<CardSelector>();
         
-        //if (_cardSelector == null) return;
-       // _cardSelector.MasterHandPosition = _masterHandPos;
-       // _cardSelector.GuestHandPosition = _guestHandPos;
+        if (_cardSelector == null) return;
+        _cardSelector.MasterHandPosition = _masterHandPos;
+        _cardSelector.GuestHandPosition = _guestHandPos;
     }
 
     /// <summary>Cardを生成</summary>
@@ -38,14 +36,14 @@ public class CardGenerator : MonoBehaviour
             var card = createCard.GetComponent<Card>();
             //Cardの情報を読み込む
             card.CardSet(_cardDataBases[cardNumber]);
-            card.IsPlayer = true;
-            AddHand(card, true);
+            card.IsPlayer = isPlayer;
+            AddCardToHand(card, isPlayer);
         }
         else
         {
             var createCard = Instantiate(_enemyCardPrefab, spawnPosition, Quaternion.identity);
             var card = createCard.GetComponent<Card>();
-            AddHand(card,false);
+            AddCardToHand(card,isPlayer);
         }
     }
     
@@ -62,19 +60,19 @@ public class CardGenerator : MonoBehaviour
             var card = createCard.GetComponent<Card>();
             //Cardの情報を読み込む
             card.CardSet(_cardDataBases[cardNumber]);
-            card.IsPlayer = false;
-            AddHand(card, false);
+            card.IsPlayer = isPlayer;
+            AddCardToHand(card, isPlayer);
         }
         else
         {
             var createCard = Instantiate(_enemyCardPrefab, spawnPosition, Quaternion.identity);
             var card = createCard.GetComponent<Card>();
-            AddHand(card,true);
+            AddCardToHand(card,isPlayer);
         }
     }
 
     /// <summary>手札にCardを追加</summary>
-    private void AddHand(Card card, bool isPlayer)
+    private void AddCardToHand(Card card, bool isPlayer)
     {
         var handPos = isPlayer ? _masterHandPos : _guestHandPos;
         handPos.Add(card, isPlayer);
@@ -84,7 +82,7 @@ public class CardGenerator : MonoBehaviour
     //通知を送る
     private void OnClickCard(Card card)
     {
-        //_cardSelector.NotifyCardSelected(card);
+        _cardSelector.NotifyCardSelected(card);
         _cardSelector.SetChoiceCard(card, card.IsPlayer);
     }
 

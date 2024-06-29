@@ -1,4 +1,3 @@
-using System.Collections;
 using Ensnare.Enums;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,12 +26,12 @@ public class StartPhase : PanelSetUp
         Debug.Log("RefreshPhase");
         foreach (var character in gameObjectManager.MasterCharacterList)
         {
-            character._powerValue = 0;
+            character.PowerValue = 0;
         }
 
         foreach (var character in gameObjectManager.GuestCharacterList)
         {
-            character._powerValue = 0;
+            character.PowerValue = 0;
         }
 
         _turnPhase.CurrentPhase = Phase.MainPhase;

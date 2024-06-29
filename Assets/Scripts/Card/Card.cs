@@ -2,14 +2,17 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-/// <summary>CardPrefabにアタッチする</summary>
+/// <summary>
+/// CardPrefabにアタッチする
+/// ScriptableObjectのデータを読み込む
+/// </summary>
 public class Card : MonoBehaviour
 {
-    public CardDataBase _cardDataBase { get; private set; }
+    public CardDataBase _cardDataBase { get; private set; } //ScriptableObject
 
-    public UnityAction<Card> OnClickCard; //CardがClickされたときに実行
+    public UnityAction<Card> OnClickCard; //CardがClickされたときに実行されるアニメーションイベント
 
-    //CardUI
+    //Card情報
     [SerializeField] private Image _icon;
     [SerializeField] private Text _powerText;
     [SerializeField] private int _power;

@@ -71,7 +71,6 @@ public class GameObjectManager : MonoBehaviourPunCallbacks
             {
                 for (var col = 0; col < 3; col++)
                 {
-                    //前方向を-にしたらバグが治った
                     var offset = -_guestForwardDirection * (row * _rowSpacing + _frontOffset) +
                                  _guestRightDirection * (col - 1) * _columnSpacing;
                     var secondPlayerObjectPosition = _secondPlayerFieldPosition + offset;
@@ -130,8 +129,6 @@ public class GameObjectManager : MonoBehaviourPunCallbacks
             
             //EnemyCamera
             var guestCamera = Instantiate(_cameraPrefab, guestAvatar.transform);
-            Debug.Log(guestCamera); 
-            //Todo: 今(-0.3 4,-4.6) 逆にすると何故か正しくなる
             var cameraPosition = new Vector3(-0.3f, 4.0f, 4.6f);
             
             guestCamera.transform.position = guestAvatar.transform.position + cameraPosition;
