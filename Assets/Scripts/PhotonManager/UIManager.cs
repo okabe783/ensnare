@@ -3,8 +3,8 @@ using Photon.Pun;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField, Header("Cardを配る")] private CardGenerator generater;
-    
+    [SerializeField, Header("Cardを配る")] private CardGenerator _generator;
+
     /// <summary>GameがStartしたときhandを配る</summary>
     public void DrawCard()
     {
@@ -13,17 +13,17 @@ public class UIManager : MonoBehaviour
             //Masterがカードをドロー
             if (PhotonNetwork.IsMasterClient)
             {
-                generater.MasterCardSpawn(i,true); //Cardを配る
-                generater.MasterCardSpawn(i,false);
+                _generator.MasterCardSpawn(i, true); //Cardを配る
+                _generator.MasterCardSpawn(i, false);
             }
             //Guestがカードをドロー
             else
             {
-                generater.GuestCardSpawn(i, true);
-                generater.GuestCardSpawn(i, false);
+                _generator.GuestCardSpawn(i, true);
+                _generator.GuestCardSpawn(i, false);
             }
         }
 
-        generater.ResetPosition(); //手札を整える
+        _generator.ResetPosition(); //手札を整える
     }
 }

@@ -7,6 +7,7 @@ public class CardGenerator : MonoBehaviour
 
     [SerializeField, Header("Guestの手札を管理するPosition")] private HandPosition _guestHandPos;
     
+    //ScriptableObjectを配列に入れる
    [SerializeField] private CardDataBase[] _cardDataBases;
     
     [SerializeField,Header("カードオブジェクト")] private GameObject _cardPrefab;

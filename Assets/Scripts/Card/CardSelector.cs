@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>Cardの選択を監視するクラス</summary>
 public class CardSelector : MonoBehaviourPun
 {
-    private readonly List<IClick> _observers = new(); //通知したい場所を追加するためのリスト
+    private readonly List<IClick> _observers = new(); //通知したい場所を追加する
 
     [SerializeField, Header("マスターの選択したカードを配置する場所")]
     private SelectPosition _selectMasterPosition;
@@ -16,7 +16,7 @@ public class CardSelector : MonoBehaviourPun
     [field: SerializeField] public HandPosition MasterHandPosition { get; set; }
     [field: SerializeField] public HandPosition GuestHandPosition { get; set; }
 
-    /// <summary>CardがClickされたときに通知を受け取る</summary>
+    /// <summary>通知を受け取る側を登録</summary>
     public void AddObserver(IClick observer)
     {
         _observers.Add(observer);
@@ -42,8 +42,7 @@ public class CardSelector : MonoBehaviourPun
         // すでにセットしていれば、手札に戻す
         if (selectPos.SelectCard != null)
         {
-            var setHandPosition = selectPos.SelectCard.IsPlayer ? MasterHandPosition : GuestHandPosition;
-            setHandPosition.Add(selectPos.SelectCard, selectPos.SelectCard.IsPlayer);
+            handPos.Add(selectPos.SelectCard, selectPos.SelectCard.IsPlayer);
         }
 
         //Guestならfalseに変更

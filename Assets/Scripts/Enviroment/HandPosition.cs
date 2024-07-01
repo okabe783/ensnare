@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Photon.Pun;
 using UnityEngine;
 
 /// <summary>手札となる場所にアタッチする</summary>

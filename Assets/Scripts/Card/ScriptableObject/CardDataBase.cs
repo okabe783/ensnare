@@ -5,7 +5,7 @@ using UnityEngine;
 public class CardDataBase : ScriptableObject
 {
     public string _name;　
-    public int _cardId;　
+    public int _cardId;
     public int _power;
     public CardType _cardType;
     public Sprite _iconImage;

@@ -1,18 +1,18 @@
-using Photon.Pun;
 using UnityEngine;
 
 /// <summary>Clickされたカードが置かれる場所</summary>
-public class SelectPosition : MonoBehaviourPunCallbacks,IClick
+public class SelectPosition : MonoBehaviour,IClick
 {
     public Card SelectCard { get; private set; } //選択されたカードを管理
+    private CardSelector _cardSelector; //監視クラス
 
     private void Start()
     {
-        var cardSelector = FindObjectOfType<CardSelector>(); //監視クラスを追加
+        _cardSelector = FindObjectOfType<CardSelector>(); 
 
-        if (cardSelector == null) return;
+        if (_cardSelector == null) return;
         
-        cardSelector.AddObserver(this);　//通知を受け取る側として追加する
+        _cardSelector.AddObserver(this);　//通知を受け取る側として追加する
     }
     
     /// <summary>自分の子要素にする。位置を合わせる</summary>
@@ -34,10 +34,7 @@ public class SelectPosition : MonoBehaviourPunCallbacks,IClick
     public void OnCardSelected(Card card)
     {
         // ここでカードをセットする
-        var cardSelector = FindObjectOfType<CardSelector>();
-        if (cardSelector != null)
-        {
-            cardSelector.SetChoiceCard(card,card);
-        }
+        if (_cardSelector != null)
+            _cardSelector.SetChoiceCard(card,card);
     }
 }

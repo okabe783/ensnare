@@ -1,5 +1,4 @@
 using System.Collections;
-using Ensnare.Enums;
 using UnityEngine;
 
 public class PanelSetUp : MonoBehaviour

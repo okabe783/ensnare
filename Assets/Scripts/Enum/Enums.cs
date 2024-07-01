@@ -2,8 +2,8 @@ namespace Ensnare.Enums //nameSpaceを記載してUsingで使用できるよう�
 {
     public enum Turn
     {
-        MasterTurn,
-        GuestTurn
+        FirstTurn,
+        SecondTurn
     }
 
     public enum Phase

@@ -20,7 +20,7 @@ public class Card : MonoBehaviour
     public int Power => _power;
     public bool IsPlayer { get; set; }
 
-    //ScriptableObjectで設定したCardを読み込む
+    //ScriptableObjectで設定したCard情報を読み込む
     public void CardSet(CardDataBase cardDataBase)
     {
         _cardDataBase = cardDataBase;

@@ -1,5 +1,6 @@
 using System.Collections;
 using Ensnare.Enums;
+using Photon.Pun;
 using UnityEngine;
 using UniRx;
 
@@ -10,9 +11,11 @@ public class TurnPhase : MonoBehaviour
     [SerializeField] private MainPhase _mainPhase;
     [SerializeField] private BattlePhase _battlePhase;
     [SerializeField] private EndPhase _endPhase;
+    [SerializeField] private OnlineGameManager _onlineGameManager;
     
     private ReactiveProperty<Phase> _currentPhase = new(Phase.none);
 
+    private PhotonView _photonView;
     public Phase CurrentPhase
     {
         get => _currentPhase.Value;
@@ -21,13 +24,17 @@ public class TurnPhase : MonoBehaviour
 
     private void Start()
     {
-        _currentPhase.ObserveEveryValueChanged(phase => phase.Value)
-            .Subscribe(newPhase => { SetPhasePanel(newPhase); }).AddTo(this);
+        _photonView = GetComponent<PhotonView>();
+        // _currentPhase.ObserveEveryValueChanged(phase => phase.Value)
+        //     .Subscribe(SetPhasePanel).AddTo(this);
     }
 
     /// <summary>各Phaseに合わせてPanelをアクティブにする</summary>
     public void SetPhasePanel(Phase currentPhase)
     {
+        Debug.Log(_onlineGameManager.Button.interactable);
+        if(!_onlineGameManager.Button.interactable) return;
+        
         switch (currentPhase)
         {
             case Phase.StartPhase:

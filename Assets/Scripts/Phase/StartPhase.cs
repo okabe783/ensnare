@@ -35,6 +35,7 @@ public class StartPhase : PanelSetUp
         }
 
         _turnPhase.CurrentPhase = Phase.MainPhase;
+        Debug.Log(_turnPhase.CurrentPhase);
     }
     
     /// <summary>2ターン目以降のスタート時に呼び出される</summary>

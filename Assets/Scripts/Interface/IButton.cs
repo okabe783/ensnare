@@ -1,8 +1,8 @@
 public interface IButton
 {
     //ClickをしたらGuestターンにする
-    public void GuestTurn();
+    public void SecondTurn();
 
     //CLickしたらMasterターンにする
-    public void MasterTurn();
+    public void FirstTurn();
 }
