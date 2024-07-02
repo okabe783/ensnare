@@ -10,6 +10,7 @@ public class HandPosition : MonoBehaviour
     //親をPlayerのHandPositionにしてCardをその子要素に設置
     public void Add(Card card, bool isPlayer)
     {
+        Debug.Log(isPlayer);
         if (isPlayer)
         {
             _masterCardList.Add(card);
@@ -18,7 +19,7 @@ public class HandPosition : MonoBehaviour
         else
         {
             _guestCardList.Add(card);
-            card.transform.SetParent(transform); //自分自身を子要素にする
+            card.transform.SetParent(transform); 
         }
 
         ResetHandPosition(isPlayer); //手札の位置を調整

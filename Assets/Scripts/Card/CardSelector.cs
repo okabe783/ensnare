@@ -36,8 +36,8 @@ public class CardSelector : MonoBehaviourPun
     public void SetChoiceCard(Card card, bool isPlayer)
     {
         //MasterかGuestかで位置を切り替える
-        var handPos = PhotonNetwork.IsMasterClient ? MasterHandPosition : GuestHandPosition;
-        var selectPos = PhotonNetwork.IsMasterClient ? _selectMasterPosition : _selectGuestPosition;
+        var handPos = isPlayer ? MasterHandPosition : GuestHandPosition;
+        var selectPos = isPlayer ? _selectMasterPosition : _selectGuestPosition;
         
         // すでにセットしていれば、手札に戻す
         if (selectPos.SelectCard != null)

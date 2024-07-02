@@ -35,6 +35,6 @@ public class SelectPosition : MonoBehaviour,IClick
     {
         // ここでカードをセットする
         if (_cardSelector != null)
-            _cardSelector.SetChoiceCard(card,card);
+            _cardSelector.SetChoiceCard(card,card.IsPlayer);
     }
 }

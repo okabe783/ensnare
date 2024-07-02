@@ -8,8 +8,6 @@ using UnityEngine.UI;
 /// </summary>
 public class Card : MonoBehaviour
 {
-    public CardDataBase _cardDataBase { get; private set; } //ScriptableObject
-
     public UnityAction<Card> OnClickCard; //CardがClickされたときに実行されるアニメーションイベント
 
     //Card情報
@@ -23,7 +21,6 @@ public class Card : MonoBehaviour
     //ScriptableObjectで設定したCard情報を読み込む
     public void CardSet(CardDataBase cardDataBase)
     {
-        _cardDataBase = cardDataBase;
         _icon.sprite = cardDataBase.Icon;
         _powerText.text = cardDataBase.PowerText;
         _power = cardDataBase.Power;

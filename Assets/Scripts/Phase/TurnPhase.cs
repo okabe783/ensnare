@@ -26,11 +26,8 @@ public class TurnPhase : MonoBehaviour
     }
 
     /// <summary>各Phaseに合わせてPanelをアクティブにする</summary>
-    public void SetPhasePanel(Phase currentPhase)
+    private void SetPhasePanel(Phase currentPhase)
     {
-        Debug.Log($"Current Phase: {currentPhase}");
-        Debug.Log($"End Turn Button Interactable: {_onlineGameManager.Button.interactable}");
-        
         if(!_onlineGameManager.Button.interactable) return;
         
         switch (currentPhase)
@@ -40,7 +37,6 @@ public class TurnPhase : MonoBehaviour
                 CurrentPhase = Phase.MainPhase;
                 break;
             case Phase.MainPhase:
-                Debug.Log("MainPhasePanelを呼び出しています");
                 StartCoroutine(ChangeMainPhase());
                 break;
             case Phase.BattlePhase:

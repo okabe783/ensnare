@@ -32,19 +32,21 @@ public class CardGenerator : MonoBehaviour
 
         if (isPlayer)
         {
-            //カードを生成
+            //Masterのカードを生成
             var createCard = Instantiate(_cardPrefab, spawnPosition, Quaternion.identity);
             var card = createCard.GetComponent<Card>();
             //Cardの情報を読み込む
             card.CardSet(_cardDataBases[cardNumber]);
-            card.IsPlayer = isPlayer;
-            AddCardToHand(card, isPlayer);
+            card.IsPlayer = true;
+            Debug.Log($"Card for Guest created. IsPlayer: {card.IsPlayer}");
+            AddCardToHand(card, true);
         }
         else
         {
+            //Guestのカードを生成
             var createCard = Instantiate(_enemyCardPrefab, spawnPosition, Quaternion.identity);
             var card = createCard.GetComponent<Card>();
-            AddCardToHand(card,isPlayer);
+            AddCardToHand(card,false);
         }
     }
     
@@ -61,14 +63,15 @@ public class CardGenerator : MonoBehaviour
             var card = createCard.GetComponent<Card>();
             //Cardの情報を読み込む
             card.CardSet(_cardDataBases[cardNumber]);
-            card.IsPlayer = isPlayer;
-            AddCardToHand(card, isPlayer);
+            card.IsPlayer = false;
+            Debug.Log($"Card for Guest created. IsPlayer: {card.IsPlayer}");
+            AddCardToHand(card, false);
         }
         else
         {
             var createCard = Instantiate(_enemyCardPrefab, spawnPosition, Quaternion.identity);
             var card = createCard.GetComponent<Card>();
-            AddCardToHand(card,isPlayer);
+            AddCardToHand(card,true);
         }
     }
 
@@ -78,11 +81,13 @@ public class CardGenerator : MonoBehaviour
         var handPos = isPlayer ? _masterHandPos : _guestHandPos;
         handPos.Add(card, isPlayer);
         card.OnClickCard = OnClickCard;　//イベントアクションに登録する
+        Debug.Log($"Card for Guest created. IsPlayer: {card.IsPlayer}");
     }
 
     //通知を送る
     private void OnClickCard(Card card)
     {
+        Debug.Log($"Card for Guest created. IsPlayer: {card.IsPlayer}");
         _cardSelector.NotifyCardSelected(card);
         _cardSelector.SetChoiceCard(card, card.IsPlayer);
     }

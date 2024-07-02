@@ -23,7 +23,7 @@ public class ClickButton : MonoBehaviourPunCallbacks
     /// <summary>ターンを終了し、次のターンに進めるメソッド</summary>
     private void EndToChange()
     {
-        _onlineGameManager.EndTurn();
+        _onlineGameManager.TurnEnd();
         _endTurnButton.interactable = false;
     }
 }

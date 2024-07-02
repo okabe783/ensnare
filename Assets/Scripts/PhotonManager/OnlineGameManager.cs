@@ -1,15 +1,18 @@
+using UnityEngine;
+using UnityEngine.UI;
 using Ensnare.Enums;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
-using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(PunTurnManager))]
 public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
 {
     [SerializeField] private TurnPhase _turnPhase; //ターン中の各Phaseを管理
+    
+    //Manager
     [SerializeField] private PunTurnManager _punTurnManager;
     [SerializeField] private UIManager _uiManager;
+    
     [SerializeField] private Button _endTurnButton; //ターン終了ボタン。自分のターンの時のみinteractable になる
 
     public Button Button => _endTurnButton;
@@ -18,14 +21,13 @@ public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
     {
         _punTurnManager.GetComponent<PunTurnManager>();
         _punTurnManager.TurnManagerListener = this; // IPunTurnManagerCallbacksをこのクラスに設定する
-        _endTurnButton.interactable = false; // 最初はターン終了ボタンを非活性化
+        _endTurnButton.interactable = false; 
     }
 
-    public void EndTurn()
+    public void TurnEnd()
     {
-        Debug.Log("EndTurnが呼び出されました");
         _punTurnManager.SendMove(null, true); // 行動を終了し、次のターンに進める
-        _endTurnButton.interactable = false; // ターン終了ボタンを再度非活性化
+        _endTurnButton.interactable = false; 
     }
 
     /// <summary>Cardを引く</summary>
@@ -34,21 +36,19 @@ public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
         _uiManager.DrawCard();
     }
 
+    //自分のターンを開始する
     private void BeginTurn()
     {
-        _endTurnButton.interactable = true;
         _turnPhase.CurrentPhase = Phase.StartPhase;
+        _endTurnButton.interactable = true;
     }
 
-    //ターンの開始時
+    //ターンの開始時に呼び出される
     void IPunTurnManagerCallbacks.OnTurnBegins(int turn)
     {
         Debug.LogFormat("OnTurnBegins {0}", turn); //現在が何ターン目であるか
-
-        //Masterのターンからはじめる
-        if (!PhotonNetwork.IsMasterClient) return;
-
-        Debug.Log("マスターのturn");
+        
+        if (!PhotonNetwork.IsMasterClient) return;　//Masterのターンからはじめる
         BeginTurn();
     }
 
@@ -59,26 +59,17 @@ public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
 
         // 自分が MasterClient ではなくて、一つ前の ActorNumber の人が行動終了した時に
         if (!PhotonNetwork.IsMasterClient && PhotonNetwork.LocalPlayer.ActorNumber == player.ActorNumber + 1)
-        {
-            Debug.Log(player.ActorNumber);
             BeginTurn(); // 自分のターンとみなす
-        }
-    }
-
-    //SendMoveを呼び出したが行動を終了していない時
-    void IPunTurnManagerCallbacks.OnPlayerMove(Photon.Realtime.Player player, int turn, object move)
-    {
     }
 
     //参加しているプレイヤー全員が行動を終了した時
     void IPunTurnManagerCallbacks.OnTurnCompleted(int turn)
     {
-        Debug.Log("1周しました");
         _punTurnManager.BeginTurn();
     }
 
+    //SendMoveを呼び出したが行動を終了していない時
+    void IPunTurnManagerCallbacks.OnPlayerMove(Photon.Realtime.Player player, int turn, object move) { }
     //ターンが時間切れになった時
-    void IPunTurnManagerCallbacks.OnTurnTimeEnds(int turn)
-    {
-    }
+    void IPunTurnManagerCallbacks.OnTurnTimeEnds(int turn) { }
 }
