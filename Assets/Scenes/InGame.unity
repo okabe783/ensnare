@@ -306,6 +306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 392659320}
   - component: {fileID: 392659319}
+  - component: {fileID: 392659321}
   m_Layer: 0
   m_Name: TurnPhase
   m_TagString: Untagged
@@ -329,6 +330,7 @@ MonoBehaviour:
   _mainPhase: {fileID: 146853211}
   _battlePhase: {fileID: 146853210}
   _endPhase: {fileID: 146853209}
+  _onlineGameManager: {fileID: 1072169490}
 --- !u!4 &392659320
 Transform:
   m_ObjectHideFlags: 0
@@ -344,6 +346,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &392659321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392659318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 5
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &548932795 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3667743524062107268, guid: 4daf4a0c08e50054b85abc6bbba4b7ee, type: 3}
@@ -696,11 +720,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1072169484}
-  - component: {fileID: 1072169485}
   - component: {fileID: 1072169486}
   - component: {fileID: 1072169487}
   - component: {fileID: 1072169488}
   - component: {fileID: 1072169489}
+  - component: {fileID: 1072169490}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -723,22 +747,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1072169485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072169483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 719000bc6b10d7c419f3c26527c0589f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _turn: {fileID: 392659319}
-  _uiManager: {fileID: 2036906711}
-  _punTurnManager: {fileID: 1072169486}
-  _turnChange: {fileID: 8435372179902878746}
 --- !u!114 &1072169486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -765,7 +773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxPlayerCount: 2
-  _onlineGameManager: {fileID: 1072169485}
+  _onlineGameManager: {fileID: 1072169490}
 --- !u!114 &1072169488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,6 +826,22 @@ MonoBehaviour:
   sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1072169490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072169483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df161fac3c3ef54389a42d94c33738c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _turnPhase: {fileID: 392659319}
+  _punTurnManager: {fileID: 1072169486}
+  _uiManager: {fileID: 2036906711}
+  _endTurnButton: {fileID: 548932795}
 --- !u!1 &1169459246
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,7 +933,7 @@ PrefabInstance:
     - target: {fileID: 3667743524062107268, guid: 4daf4a0c08e50054b85abc6bbba4b7ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2036906707}
+      objectReference: {fileID: 0}
     - target: {fileID: 3667743524062107268, guid: 4daf4a0c08e50054b85abc6bbba4b7ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: 
@@ -1213,39 +1237,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1999721674}
-  - component: {fileID: 1999721673}
   - component: {fileID: 1999721675}
   - component: {fileID: 1999721676}
+  - component: {fileID: 1999721677}
   m_Layer: 0
-  m_Name: CardGenerater
+  m_Name: CardGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1999721673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1999721672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7aae5da626ba034d873069acd089576, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _masterHandPos: {fileID: 723712403}
-  _guestHandPos: {fileID: 1714871723}
-  _cardDataBases:
-  - {fileID: 11400000, guid: 82d6f53e64add5241b5ddc7adfed1b8f, type: 2}
-  - {fileID: 11400000, guid: 80eec23e91668234e981592afebe470a, type: 2}
-  - {fileID: 11400000, guid: 6c8ef74853fb6a348a852275d9ab1365, type: 2}
-  - {fileID: 11400000, guid: 8d70955fcc338f34c8c74b5f1462ea0e, type: 2}
-  - {fileID: 11400000, guid: f054d7544d08f024e9d2831c0a2f57b2, type: 2}
-  - {fileID: 11400000, guid: 9c0eb7034007cfd449743855368681a3, type: 2}
-  _cardPrefab: {fileID: 5211787216588720978, guid: 7ba25634ae0202a49b59c5f57986110d, type: 3}
-  _enemyCardPrefab: {fileID: 5211787216588720978, guid: 939f4786241f05041967babaa8494234, type: 3}
 --- !u!4 &1999721674
 Transform:
   m_ObjectHideFlags: 0
@@ -1299,6 +1300,29 @@ MonoBehaviour:
   sceneViewId: 4
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1999721677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999721672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069493f85a746a0498c1942c63444aac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _masterHandPos: {fileID: 723712403}
+  _guestHandPos: {fileID: 1714871723}
+  _cardDataBases:
+  - {fileID: 11400000, guid: 82d6f53e64add5241b5ddc7adfed1b8f, type: 2}
+  - {fileID: 11400000, guid: 80eec23e91668234e981592afebe470a, type: 2}
+  - {fileID: 11400000, guid: 6c8ef74853fb6a348a852275d9ab1365, type: 2}
+  - {fileID: 11400000, guid: 8d70955fcc338f34c8c74b5f1462ea0e, type: 2}
+  - {fileID: 11400000, guid: f054d7544d08f024e9d2831c0a2f57b2, type: 2}
+  - {fileID: 11400000, guid: 3851cc62659dc9a4ba17351142108b6b, type: 2}
+  _cardPrefab: {fileID: 5211787216588720978, guid: 7ba25634ae0202a49b59c5f57986110d, type: 3}
+  _enemyCardPrefab: {fileID: 5211787216588720978, guid: 939f4786241f05041967babaa8494234, type: 3}
 --- !u!1 &2036906707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,7 +1353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6403e11197697b499b3c729623fc339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onlineGameManager: {fileID: 1072169485}
+  _onlineGameManager: {fileID: 1072169490}
   _endTurnButton: {fileID: 548932795}
 --- !u!4 &2036906710
 Transform:
@@ -1358,7 +1382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c810145f87e6a4b9d30b731dda7b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _generator: {fileID: 1999721673}
+  _generator: {fileID: 1999721677}
 --- !u!1 &2121187763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,17 +1485,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8327990828037078857, guid: 4daf4a0c08e50054b85abc6bbba4b7ee, type: 3}
   m_PrefabInstance: {fileID: 1190339634}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8435372179902878746 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8435372181015359528, guid: 4daf4a0c08e50054b85abc6bbba4b7ee, type: 3}
-  m_PrefabInstance: {fileID: 1190339634}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8327990826918435707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fa3b73f7732fe049b4e124a6bcb1af6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

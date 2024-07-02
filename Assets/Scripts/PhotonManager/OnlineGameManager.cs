@@ -14,8 +14,6 @@ public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
 
     public Button Button => _endTurnButton;
 
-    private Turn _currentTurn;
-
     private void Start()
     {
         _punTurnManager.GetComponent<PunTurnManager>();
@@ -39,33 +37,31 @@ public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
     private void BeginTurn()
     {
         _endTurnButton.interactable = true;
-        Debug.Log(_endTurnButton.interactable);
-        _turnPhase.SetPhasePanel(Phase.StartPhase);
+        _turnPhase.CurrentPhase = Phase.StartPhase;
     }
 
     //ターンの開始時
     void IPunTurnManagerCallbacks.OnTurnBegins(int turn)
     {
-        Debug.LogFormat("OnTurnBegins {0}", turn);
-        if (PhotonNetwork.IsMasterClient)
-        {
-            this.BeginTurn();
-        }
+        Debug.LogFormat("OnTurnBegins {0}", turn); //現在が何ターン目であるか
+
+        //Masterのターンからはじめる
+        if (!PhotonNetwork.IsMasterClient) return;
+
+        Debug.Log("マスターのturn");
+        BeginTurn();
     }
 
     //プレイヤーの行動終了時
     void IPunTurnManagerCallbacks.OnPlayerFinished(Photon.Realtime.Player player, int turn, object move)
     {
-        Debug.Log("プレイヤー " + player.NickName + " が行動を終了しました: " + turn);
+        Debug.LogFormat("プレイヤー {0} が行動を終了しました: {1}", player.NickName, turn);
 
-        //ToDo:IsMineがturnをわたしているはずなのにFalseのまま
-
-        if (PhotonNetwork.LocalPlayer.ActorNumber == player.ActorNumber + 1 ||
-            (player.ActorNumber == PhotonNetwork.PlayerList.Length && PhotonNetwork.LocalPlayer.ActorNumber == 1))
+        // 自分が MasterClient ではなくて、一つ前の ActorNumber の人が行動終了した時に
+        if (!PhotonNetwork.IsMasterClient && PhotonNetwork.LocalPlayer.ActorNumber == player.ActorNumber + 1)
         {
-            Debug.Log("自分のターンとみなす");
-            // 自分のターンとみなす
-            this.BeginTurn();
+            Debug.Log(player.ActorNumber);
+            BeginTurn(); // 自分のターンとみなす
         }
     }
 
@@ -77,6 +73,8 @@ public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
     //参加しているプレイヤー全員が行動を終了した時
     void IPunTurnManagerCallbacks.OnTurnCompleted(int turn)
     {
+        Debug.Log("1周しました");
+        _punTurnManager.BeginTurn();
     }
 
     //ターンが時間切れになった時
