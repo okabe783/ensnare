@@ -69,4 +69,9 @@ public class TurnPhase : MonoBehaviour
     {
         _battlePhase.SelectCharacter(character);
     }
+
+    public void ActiveBattlePhase()
+    {
+        _battlePhase.BattlePhaseSetUp();
+    }
 }
