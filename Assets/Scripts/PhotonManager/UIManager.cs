@@ -24,6 +24,6 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        _generator.ResetPosition(); //手札を整える
+        _generator.SortHand(); //手札を整える
     }
 }

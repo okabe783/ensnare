@@ -4,21 +4,24 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptable /Create Card")]
 public class CardDataBase : ScriptableObject
 {
-    public string _name;　
-    public int _cardId;
-    public int _power;
-    public CardType _cardType;
-    public Sprite _iconImage;
-    public string _powerText;
+    [SerializeField] private string _name;　
+    [SerializeField] private int _cardId;
+    [SerializeField] private int _power;
+    [SerializeField] private CardType _cardType;
+    [SerializeField] private Sprite _iconImage;
+    [SerializeField] private string _powerText;
 
+    public string Name => _name;
+    public int CardId => _cardId;
+    public int Power => _power;
+    public CardType Type => _cardType;
     public Sprite Icon => _iconImage;
     public string PowerText => _powerText;
-    public int Power => _power;
-
+    
     //カードの種類
     public enum CardType
     {
-        none,
+        None,
         Weapon,
         Trap,
     }

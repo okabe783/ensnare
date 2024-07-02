@@ -10,7 +10,6 @@ public class HandPosition : MonoBehaviour
     //親をPlayerのHandPositionにしてCardをその子要素に設置
     public void Add(Card card, bool isPlayer)
     {
-        Debug.Log(isPlayer);
         if (isPlayer)
         {
             _masterCardList.Add(card);
@@ -22,7 +21,7 @@ public class HandPosition : MonoBehaviour
             card.transform.SetParent(transform); 
         }
 
-        ResetHandPosition(isPlayer); //手札の位置を調整
+        ResetHandPosition(isPlayer);
     }
 
     /// <summary>Cardの削除</summary>
@@ -45,8 +44,7 @@ public class HandPosition : MonoBehaviour
         for (var i = 0; i < cardList.Count; i++)
         {
             var posZ = i * (isPlayer ? 1.8f : 1.3f);
-            //手札の場所を指定
-            cardList[i].transform.localPosition = new Vector3(0, 0, posZ);
+            cardList[i].transform.localPosition = new Vector3(0, 0, posZ); //手札の場所を指定
         }
     }
 

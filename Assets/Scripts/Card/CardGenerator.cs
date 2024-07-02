@@ -1,14 +1,13 @@
 using UnityEngine;
 
-/// <summary>Cardを生成する為のscript</summary>
+/// <summary>Cardを生成する</summary>
 public class CardGenerator : MonoBehaviour
 {
     [SerializeField, Header("Masterの手札を管理するPosition")] private HandPosition _masterHandPos;
 
     [SerializeField, Header("Guestの手札を管理するPosition")] private HandPosition _guestHandPos;
     
-    //ScriptableObjectを配列に入れる
-   [SerializeField] private CardDataBase[] _cardDataBases;
+   [SerializeField] private CardDataBase[] _cardDataBases;  //ScriptableObjectを配列に追加
     
     [SerializeField,Header("カードオブジェクト")] private GameObject _cardPrefab;
     [SerializeField, Header("敵のカード")]　private GameObject _enemyCardPrefab;
@@ -24,7 +23,7 @@ public class CardGenerator : MonoBehaviour
         _cardSelector.GuestHandPosition = _guestHandPos;
     }
 
-    /// <summary>Cardを生成</summary>
+    /// <summary>Master用のCardを生成</summary>
     public void MasterCardSpawn(int cardNumber, bool isPlayer)
     {
         //MasterかGuestか
@@ -35,11 +34,10 @@ public class CardGenerator : MonoBehaviour
             //Masterのカードを生成
             var createCard = Instantiate(_cardPrefab, spawnPosition, Quaternion.identity);
             var card = createCard.GetComponent<Card>();
-            //Cardの情報を読み込む
-            card.CardSet(_cardDataBases[cardNumber]);
-            card.IsPlayer = true;
-            Debug.Log($"Card for Guest created. IsPlayer: {card.IsPlayer}");
-            AddCardToHand(card, true);
+            
+            card.CardSet(_cardDataBases[cardNumber]);　//Cardの情報を読み込む
+            card.IsPlayer = true; //Cardに登録
+            AddCardToHand(card, true);　
         }
         else
         {
@@ -50,21 +48,19 @@ public class CardGenerator : MonoBehaviour
         }
     }
     
+    /// <summary>Guest用のCardを生成</summary>
     public void GuestCardSpawn(int cardNumber, bool isPlayer)
     {
-        //MasterかGuestか
         var spawnPosition = isPlayer ? _masterHandPos.transform.position : _guestHandPos.transform.position;
-
-        //falseならGuestPosにカードを追加
+        
         if (!isPlayer)
         {
-            //カードを生成
+            
             var createCard = Instantiate(_cardPrefab, spawnPosition, Quaternion.identity);
             var card = createCard.GetComponent<Card>();
-            //Cardの情報を読み込む
+            
             card.CardSet(_cardDataBases[cardNumber]);
             card.IsPlayer = false;
-            Debug.Log($"Card for Guest created. IsPlayer: {card.IsPlayer}");
             AddCardToHand(card, false);
         }
         else
@@ -81,19 +77,17 @@ public class CardGenerator : MonoBehaviour
         var handPos = isPlayer ? _masterHandPos : _guestHandPos;
         handPos.Add(card, isPlayer);
         card.OnClickCard = OnClickCard;　//イベントアクションに登録する
-        Debug.Log($"Card for Guest created. IsPlayer: {card.IsPlayer}");
     }
 
     //通知を送る
     private void OnClickCard(Card card)
     {
-        Debug.Log($"Card for Guest created. IsPlayer: {card.IsPlayer}");
         _cardSelector.NotifyCardSelected(card);
         _cardSelector.SetChoiceCard(card, card.IsPlayer);
     }
 
     /// <summary>手札の位置を調整する</summary>
-    public void ResetPosition()
+    public void SortHand()
     {
         _masterHandPos.ResetHandPosition(true);
         _guestHandPos.ResetHandPosition(false);
