@@ -13,15 +13,19 @@ public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
     [SerializeField] private PunTurnManager _punTurnManager;
     [SerializeField] private UIManager _uiManager;
     
-    [SerializeField] private Button _endTurnButton; //ターン終了ボタン。自分のターンの時のみinteractable になる
-
+    [SerializeField] private Button _endTurnButton; //ターン終了ボタン。自分のターンの時のみinteractableになる
     public Button Button => _endTurnButton;
+
+    public bool IsBind { get; set; }
+
+    public int DownPowerValue { get; set; } = 0;
 
     private void Start()
     {
         _punTurnManager.GetComponent<PunTurnManager>();
         _punTurnManager.TurnManagerListener = this; // IPunTurnManagerCallbacksをこのクラスに設定する
-        _endTurnButton.interactable = false; 
+        _endTurnButton.interactable = false;
+        IsBind = false;
     }
 
     public void TurnEnd()

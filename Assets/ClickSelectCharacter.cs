@@ -16,7 +16,6 @@ public class ClickSelectCharacter : MonoBehaviourPunCallbacks, IPointerClickHand
     //Clickしたカードを移動させるエリア
     private SelectPosition _masterSelectPosition;
     private SelectPosition _guestSelectPosition;
-
     public int PowerValue { get; set; } //Power加算用の変数
 
     private void Start()
@@ -117,7 +116,6 @@ public class ClickSelectCharacter : MonoBehaviourPunCallbacks, IPointerClickHand
     {
         if (_turnPhase.CurrentPhase != Phase.BattlePhase) return;
         _turnPhase.Select(character);
-        Debug.Log(character);
     }
 
     public void OnCardSelected(Card card)

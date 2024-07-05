@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -18,12 +19,15 @@ public class Card : MonoBehaviour
     public int Power => _power;
     public bool IsPlayer { get; set; }
 
+    public Enum CardType { get; private set; }
+
     //ScriptableObjectで設定したCard情報を読み込む
     public void CardSet(CardDataBase cardDataBase)
     {
         _icon.sprite = cardDataBase.Icon;
         _powerText.text = cardDataBase.PowerText;
         _power = cardDataBase.Power;
+        CardType = cardDataBase.Type;
     }
 
     /// <summary>CardがClickされたことを通知する</summary>

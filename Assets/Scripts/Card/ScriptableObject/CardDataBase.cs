@@ -1,3 +1,4 @@
+using Ensnare.Enums;
 using UnityEngine;
 
 /// <summary>Cardのデータを管理するScriptableObject</summary>
@@ -17,12 +18,4 @@ public class CardDataBase : ScriptableObject
     public CardType Type => _cardType;
     public Sprite Icon => _iconImage;
     public string PowerText => _powerText;
-    
-    //カードの種類
-    public enum CardType
-    {
-        None,
-        Weapon,
-        Trap,
-    }
 }

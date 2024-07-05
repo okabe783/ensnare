@@ -1,11 +1,5 @@
 namespace Ensnare.Enums //nameSpaceを記載してUsingで使用できるようにする
 {
-    public enum Turn
-    {
-        FirstTurn,
-        SecondTurn
-    }
-
     public enum Phase
     {
         none,
@@ -14,5 +8,18 @@ namespace Ensnare.Enums //nameSpaceを記載してUsingで使用できるよう�
         MainPhase,
         BattlePhase,
         EndPhase,
+    }
+
+    public enum CardType
+    {
+        CharacterCard,
+        TrapCard,
+        DeathCard
+    }
+
+    public enum Result
+    {
+        Win,
+        Lose,
     }
 }
