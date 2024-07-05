@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Ensnare.Enums;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
+using UniRx;
 
 [RequireComponent(typeof(PunTurnManager))]
 public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
@@ -15,19 +16,24 @@ public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
     
     [SerializeField] private Button _endTurnButton; //ターン終了ボタン。自分のターンの時のみinteractableになる
     public Button Button => _endTurnButton;
+    
+    private BoolReactiveProperty _isBind = new(false);
 
-    public bool IsBind { get; set; }
-
-    public int DownPowerValue { get; set; } = 0;
+    public IReadOnlyReactiveProperty<bool>IsBind => _isBind;
+    public int DownPowerValue { get; set; }
 
     private void Start()
     {
         _punTurnManager.GetComponent<PunTurnManager>();
         _punTurnManager.TurnManagerListener = this; // IPunTurnManagerCallbacksをこのクラスに設定する
         _endTurnButton.interactable = false;
-        IsBind = false;
     }
 
+    public void SetIsBind(bool value)
+    {
+        _isBind.Value = value;
+    }
+    
     public void TurnEnd()
     {
         _punTurnManager.SendMove(null, true); // 行動を終了し、次のターンに進める

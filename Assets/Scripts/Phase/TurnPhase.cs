@@ -40,6 +40,7 @@ public class TurnPhase : MonoBehaviour
                 StartCoroutine(ChangeMainPhase());
                 break;
             case Phase.BattlePhase:
+                _onlineGameManager.SetIsBind(false);
                 _battlePhase.BattlePhaseSetUp();
                 break;
             case Phase.EndPhase:

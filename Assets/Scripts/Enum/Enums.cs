@@ -16,10 +16,4 @@ namespace Ensnare.Enums //nameSpaceを記載してUsingで使用できるよう�
         TrapCard,
         DeathCard
     }
-
-    public enum Result
-    {
-        Win,
-        Lose,
-    }
 }

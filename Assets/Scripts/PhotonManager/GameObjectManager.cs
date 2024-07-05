@@ -1,17 +1,20 @@
+using UniRx;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameObjectManager : MonoBehaviourPunCallbacks
-{ 
+{
+    [SerializeField] private OnlineGameManager _onlineGameManager;
     // 各オブジェクトの間隔
     [SerializeField, Header("行")] private float _rowSpacing = 2.0f;
     [SerializeField, Header("列")] private float _columnSpacing = 2.0f;
 
     [SerializeField, Header("Playerからの距離")] private float _frontOffset = 2.0f; // Playerの前に配置するためのオフセット
     //FieldのPosition
-    private Vector3 _firstPlayerFieldPosition = new();
-    private Vector3 _secondPlayerFieldPosition = new();
+    private Vector3 _firstPlayerFieldPosition;
+    private Vector3 _secondPlayerFieldPosition;
 
     // Masterの向き
     private Vector3 _masterForwardDirection; //前向きの方向
@@ -32,6 +35,13 @@ public class GameObjectManager : MonoBehaviourPunCallbacks
 
     public GameObject Master { get; private set; }
     public GameObject Guest { get; private set; }
+    
+    private void Start()
+    {
+        _onlineGameManager.IsBind
+            .Subscribe(isBind => DisableCharacterSelection(isBind))
+            .AddTo(this);
+    }
 
     //Master用Characterを置くためのFieldを生成
     public void PhotonSetUpGameField()
@@ -137,6 +147,18 @@ public class GameObjectManager : MonoBehaviourPunCallbacks
             //Guestの向きを取得
             _guestForwardDirection = -guestAvatar.transform.forward;
             _guestRightDirection = -guestAvatar.transform.right;
+        }
+    }
+
+    private void DisableCharacterSelection(bool isBind)
+    {
+        if (isBind)
+        {
+            for (var i = 3; i < MasterCharacterList.Count && i < 6; i++)
+            {
+                // クリック不可にする
+                MasterCharacterList[i].GetComponent<Button>().interactable = false;
+            }
         }
     }
 }
