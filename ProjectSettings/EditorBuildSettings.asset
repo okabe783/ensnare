@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/InGame.unity
     guid: d06f1cdab81975d4188736b3da601467
   - enabled: 0
-    path: Assets/Sample/PunSample.unity
+    path: Assets/Photon/Sample/PunSample.unity
     guid: 5762f35b3a841dd43b3ba7677f27d022
   m_configObjects: {}

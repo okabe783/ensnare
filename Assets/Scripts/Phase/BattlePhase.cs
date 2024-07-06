@@ -30,7 +30,7 @@ public class BattlePhase : PanelSetUp
         
         Debug.Log(power1);
         Debug.Log(power2);
-
+        
         //自分のキャラクターが敵のキャラクターよりも上であれば
         if (power1 >= power2)
         {
@@ -42,7 +42,7 @@ public class BattlePhase : PanelSetUp
                 _ruleBook.SetRule(0);
                 random = random == 0 ? 1 : 0;
             }
-
+        
             if (_onlineGameManager.IsSecondTrap)
             {
                 Debug.Log("さらにTrapCardをOpen");

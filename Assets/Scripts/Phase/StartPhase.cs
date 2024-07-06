@@ -1,4 +1,4 @@
-using Ensnare.Enums;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +7,8 @@ public class StartPhase : PanelSetUp
     [SerializeField] private TurnPhase _turnPhase;
     [SerializeField] private GameObject _startPanel; 
     [SerializeField] private Text _phaseText;
-    [SerializeField] private GameObjectManager gameObjectManager;
     [SerializeField] private HandPosition _handPosition;
+    [SerializeField] private List<CharacterValue> _characterValue;
 
     /// <summary>StartPhaseを実行</summary>
     public void StartPhaseSetUp()
@@ -24,14 +24,12 @@ public class StartPhase : PanelSetUp
     private void RefreshPhaseSetUp()
     {
         Debug.Log("RefreshPhase");
-        foreach (var character in gameObjectManager.MasterCharacterList)
-        {
-            character.PowerValue = 0;
-        }
 
-        foreach (var character in gameObjectManager.GuestCharacterList)
+        // ターンプレイヤーのキャラクターのPowerValueをリセットする
+        // 全ての CharacterValue をリセットする
+        foreach (var characterValue in _characterValue)
         {
-            character.PowerValue = 0;
+            characterValue.ResetValue();
         }
     }
     
