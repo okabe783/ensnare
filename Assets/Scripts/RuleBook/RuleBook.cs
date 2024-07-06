@@ -1,31 +1,33 @@
-using Ensnare.Enums;
 using UnityEngine;
 
 public class RuleBook : MonoBehaviour
 {
+    [SerializeField] private OnlineGameManager _onlineGameManager;
     [SerializeField] private TrapRuleBook _trapRule;
     [SerializeField] private DeathCardRule _lose;
 
     /// <summary>
     /// Battle終了時負けたcharacterのカードをOpenする
     /// </summary>
-    /// <param name="cardType"></param>
     /// <param name="rule"></param>
-    public void SetRule(CardType cardType, int rule)
+    public void SetRule(int rule)
     {
         //TrapCardであれば
-        switch (cardType)
+        if (_onlineGameManager.IsFirstTrap && rule == 0)
         {
-            case CardType.TrapCard when rule == 0:
-                _trapRule.Bind();
-                break;
-            case CardType.TrapCard when rule == 1:
-                _trapRule.DownValue();
-                break;
+            Debug.Log("Bindを発動");
+            _trapRule.Bind();
         }
+        else if (_onlineGameManager.IsFirstTrap && rule == 1)
+        {
+            _trapRule.DownValue();
+            Debug.Log("攻撃力低下");
+        }
+    }
 
+    public void Lose()
+    {
         //敗北カードであれば
-        if (cardType == CardType.DeathCard)
-            _lose.GameLose();
+        _lose.GameLose();
     }
 }

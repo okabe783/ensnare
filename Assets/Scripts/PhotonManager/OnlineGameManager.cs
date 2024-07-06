@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using Ensnare.Enums;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
-using UniRx;
 
 [RequireComponent(typeof(PunTurnManager))]
 public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
@@ -17,9 +16,10 @@ public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
     [SerializeField] private Button _endTurnButton; //ターン終了ボタン。自分のターンの時のみinteractableになる
     public Button Button => _endTurnButton;
     
-    private BoolReactiveProperty _isBind = new(false);
+    public bool IsSecondTrap { get; set; } = false;
 
-    public IReadOnlyReactiveProperty<bool>IsBind => _isBind;
+    public bool IsFirstTrap { get; set; } = false;
+    
     public int DownPowerValue { get; set; }
 
     private void Start()
@@ -27,11 +27,6 @@ public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
         _punTurnManager.GetComponent<PunTurnManager>();
         _punTurnManager.TurnManagerListener = this; // IPunTurnManagerCallbacksをこのクラスに設定する
         _endTurnButton.interactable = false;
-    }
-
-    public void SetIsBind(bool value)
-    {
-        _isBind.Value = value;
     }
     
     public void TurnEnd()
@@ -56,8 +51,6 @@ public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
     //ターンの開始時に呼び出される
     void IPunTurnManagerCallbacks.OnTurnBegins(int turn)
     {
-        Debug.LogFormat("OnTurnBegins {0}", turn); //現在が何ターン目であるか
-        
         if (!PhotonNetwork.IsMasterClient) return;　//Masterのターンからはじめる
         BeginTurn();
     }
@@ -65,8 +58,6 @@ public class OnlineGameManager : MonoBehaviour, IPunTurnManagerCallbacks
     //プレイヤーの行動終了時
     void IPunTurnManagerCallbacks.OnPlayerFinished(Photon.Realtime.Player player, int turn, object move)
     {
-        Debug.LogFormat("プレイヤー {0} が行動を終了しました: {1}", player.NickName, turn);
-
         // 自分が MasterClient ではなくて、一つ前の ActorNumber の人が行動終了した時に
         if (!PhotonNetwork.IsMasterClient && PhotonNetwork.LocalPlayer.ActorNumber == player.ActorNumber + 1)
             BeginTurn(); // 自分のターンとみなす

@@ -1,4 +1,5 @@
 using System;
+using Ensnare.Enums;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -19,7 +20,7 @@ public class Card : MonoBehaviour
     public int Power => _power;
     public bool IsPlayer { get; set; }
 
-    public Enum CardType { get; private set; }
+    public CardType CardType { get; private set; }
 
     //ScriptableObjectで設定したCard情報を読み込む
     public void CardSet(CardDataBase cardDataBase)

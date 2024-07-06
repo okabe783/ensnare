@@ -11,6 +11,7 @@ public class TurnPhase : MonoBehaviour
     [SerializeField] private BattlePhase _battlePhase;
     [SerializeField] private EndPhase _endPhase;
     [SerializeField] private OnlineGameManager _onlineGameManager;
+    [SerializeField] private CharacterObserver _characterObserver;
     
     private ReactiveProperty<Phase> _currentPhase = new(Phase.none);
     public Phase CurrentPhase
@@ -40,7 +41,7 @@ public class TurnPhase : MonoBehaviour
                 StartCoroutine(ChangeMainPhase());
                 break;
             case Phase.BattlePhase:
-                _onlineGameManager.SetIsBind(false);
+                _characterObserver.SetIsBind(false);
                 _battlePhase.BattlePhaseSetUp();
                 break;
             case Phase.EndPhase:
@@ -68,6 +69,7 @@ public class TurnPhase : MonoBehaviour
     /// <summary>Characterを選択したらリストに保存して2体選んだらバトルを開始する</summary>
     public void Select(ClickSelectCharacter character)
     {
+        Debug.Log("リストに保存しました");
         _battlePhase.SelectCharacter(character);
     }
 
